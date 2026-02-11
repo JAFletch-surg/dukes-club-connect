@@ -47,15 +47,15 @@ export default {
   				DEFAULT: 'hsl(var(--card))',
   				foreground: 'hsl(var(--card-foreground))'
   			},
-			gold: {
-				DEFAULT: 'hsl(var(--gold))',
-				foreground: 'hsl(var(--gold-foreground))'
-			},
-			navy: {
-				DEFAULT: 'hsl(var(--navy))',
-				foreground: 'hsl(var(--navy-foreground))'
-			},
-			sidebar: {
+  			gold: {
+  				DEFAULT: 'hsl(var(--gold))',
+  				foreground: 'hsl(var(--gold-foreground))'
+  			},
+  			navy: {
+  				DEFAULT: 'hsl(var(--navy))',
+  				foreground: 'hsl(var(--navy-foreground))'
+  			},
+  			sidebar: {
   				DEFAULT: 'hsl(var(--sidebar-background))',
   				foreground: 'hsl(var(--sidebar-foreground))',
   				primary: 'hsl(var(--sidebar-primary))',
@@ -95,7 +95,7 @@ export default {
   		},
   		fontFamily: {
   			sans: [
-  				'Inter',
+  				'Montserrat',
   				'ui-sans-serif',
   				'system-ui',
   				'-apple-system',
@@ -108,7 +108,7 @@ export default {
   				'sans-serif'
   			],
   			serif: [
-  				'Lora',
+  				'Cormorant Garamond',
   				'ui-serif',
   				'Georgia',
   				'Cambria',
@@ -117,7 +117,7 @@ export default {
   				'serif'
   			],
   			mono: [
-  				'Space Mono',
+  				'IBM Plex Mono',
   				'ui-monospace',
   				'SFMono-Regular',
   				'Menlo',
