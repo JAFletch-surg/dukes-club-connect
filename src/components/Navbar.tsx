@@ -40,9 +40,14 @@ const Navbar = () => {
               {link.label}
             </Link>
           ))}
+          <Link to="/login">
+            <Button variant="hero" size="sm" className="ml-2">
+              Login
+            </Button>
+          </Link>
           <Link to="/join">
-            <Button variant="gold" size="sm" className="ml-2">
-              Join / Login
+            <Button variant="gold" size="sm">
+              Join
             </Button>
           </Link>
         </div>
@@ -73,9 +78,14 @@ const Navbar = () => {
               {link.label}
             </Link>
           ))}
+          <Link to="/login" onClick={() => setMobileOpen(false)}>
+            <Button variant="hero" size="sm" className="mt-2 w-full">
+              Login
+            </Button>
+          </Link>
           <Link to="/join" onClick={() => setMobileOpen(false)}>
             <Button variant="gold" size="sm" className="mt-2 w-full">
-              Join / Login
+              Join
             </Button>
           </Link>
         </div>
