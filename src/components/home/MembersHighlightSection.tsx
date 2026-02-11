@@ -21,10 +21,10 @@ const MembersHighlightSection = () => {
 
       <div className="relative container mx-auto px-4">
         <div className="text-center mb-14">
-          <div className="inline-flex items-center gap-2 bg-gold/20 text-gold px-4 py-1.5 rounded-full text-sm font-mono mb-4">
+          <div className="inline-flex items-center gap-2 bg-gold/20 text-gold px-4 py-1.5 rounded-full text-sm font-semibold mb-4">
             <Lock size={14} /> Members Only
           </div>
-          <h2 className="text-3xl md:text-4xl font-serif font-bold text-navy-foreground">
+          <h2 className="text-3xl md:text-4xl font-sans font-bold text-navy-foreground">
             Exclusive Member Resources
           </h2>
           <p className="mt-4 max-w-xl mx-auto text-navy-foreground/70">
@@ -36,7 +36,7 @@ const MembersHighlightSection = () => {
           {features.map((f) => (
             <div
               key={f.title}
-              className="p-6 rounded-lg border border-navy-foreground/10 bg-navy-foreground/5 backdrop-blur-sm"
+              className="group p-6 rounded-lg border border-navy-foreground/20 bg-navy-foreground/5 backdrop-blur-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1"
             >
               <f.icon className="text-gold mb-4" size={32} />
               <h3 className="text-lg font-semibold text-navy-foreground mb-2">{f.title}</h3>

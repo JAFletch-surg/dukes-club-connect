@@ -15,7 +15,7 @@ const Footer = () => {
           </div>
 
           <div>
-            <h4 className="text-sm font-mono tracking-wider uppercase text-gold mb-4">Quick Links</h4>
+            <h4 className="text-sm font-semibold tracking-wider uppercase text-gold mb-4">Quick Links</h4>
             <ul className="space-y-2 text-sm text-navy-foreground/70">
               <li><Link to="/about" className="hover:text-navy-foreground transition-colors">About Us</Link></li>
               <li><Link to="/events" className="hover:text-navy-foreground transition-colors">Events & Courses</Link></li>
@@ -25,7 +25,7 @@ const Footer = () => {
           </div>
 
           <div>
-            <h4 className="text-sm font-mono tracking-wider uppercase text-gold mb-4">Resources</h4>
+            <h4 className="text-sm font-semibold tracking-wider uppercase text-gold mb-4">Resources</h4>
             <ul className="space-y-2 text-sm text-navy-foreground/70">
               <li><Link to="/news" className="hover:text-navy-foreground transition-colors">News & Blog</Link></li>
               <li><Link to="/contact" className="hover:text-navy-foreground transition-colors">Contact Us</Link></li>
@@ -34,7 +34,7 @@ const Footer = () => {
           </div>
 
           <div>
-            <h4 className="text-sm font-mono tracking-wider uppercase text-gold mb-4">Connect</h4>
+            <h4 className="text-sm font-semibold tracking-wider uppercase text-gold mb-4">Connect</h4>
             <div className="flex items-center gap-4">
               <a href="#" className="text-navy-foreground/60 hover:text-gold transition-colors"><Twitter size={20} /></a>
               <a href="#" className="text-navy-foreground/60 hover:text-gold transition-colors"><Instagram size={20} /></a>

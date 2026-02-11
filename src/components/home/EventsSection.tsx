@@ -35,7 +35,7 @@ const EventsSection = () => {
       <div className="container mx-auto px-4">
         <div className="flex flex-col md:flex-row md:items-end md:justify-between mb-14">
           <div>
-            <p className="text-gold font-mono text-sm tracking-widest uppercase mb-2">
+            <p className="text-gold font-semibold text-sm tracking-widest uppercase mb-2">
               Courses and Webinars
             </p>
             <h2 className="text-3xl md:text-4xl font-sans font-bold text-navy-foreground">

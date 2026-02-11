@@ -16,7 +16,7 @@ const BenefitsSection = () => {
     <section className="py-20 bg-card">
       <div className="container mx-auto px-4">
         <div className="text-center mb-14">
-          <p className="text-gold font-mono text-sm tracking-widest uppercase mb-2">Why Join?</p>
+          <p className="text-gold font-semibold text-sm tracking-widest uppercase mb-2">Why Join?</p>
           <h2 className="text-3xl md:text-4xl font-sans font-bold text-card-foreground">
             Membership Benefits
           </h2>
