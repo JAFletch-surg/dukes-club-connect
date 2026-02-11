@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { Twitter, Instagram, Linkedin, Mail } from "lucide-react";
+import logoWhite from "@/assets/logo-white.png";
 
 const Footer = () => {
   return (
@@ -7,9 +8,7 @@ const Footer = () => {
       <div className="container mx-auto px-4 py-12">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div>
-            <h3 className="text-xl font-serif font-bold mb-4">
-              Dukes<span className="text-gold">'</span> Club
-            </h3>
+            <img src={logoWhite} alt="The Dukes' Club" className="h-12 mb-4" />
             <p className="text-sm text-navy-foreground/60">
               The UK's leading colorectal surgery trainee society, supporting the next generation of colorectal surgeons.
             </p>

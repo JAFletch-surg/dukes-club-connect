@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import heroBg from "@/assets/hero-bg.jpg";
+import logoWhite from "@/assets/logo-white.png";
 
 const HeroSection = () => {
   return (
@@ -17,12 +18,7 @@ const HeroSection = () => {
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-navy/60" />
 
       <div className="relative z-10 container mx-auto px-4 text-center">
-        <p className="text-gold font-mono text-sm tracking-widest uppercase mb-4 animate-fade-in">
-          The UK Colorectal Trainee Society
-        </p>
-        <h1 className="text-4xl md:text-6xl lg:text-7xl font-serif font-bold text-primary-foreground mb-6 leading-tight">
-          Dukes<span className="text-gold">'</span> Club
-        </h1>
+        <img src={logoWhite} alt="The Dukes' Club" className="h-20 md:h-28 mx-auto mb-6" />
         <p className="max-w-2xl mx-auto text-lg md:text-xl text-primary-foreground/80 mb-10 font-sans">
           Advancing colorectal surgical training through education, collaboration, and excellence since founding.
         </p>
