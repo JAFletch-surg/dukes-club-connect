@@ -29,8 +29,8 @@ const SocialFeedSection = () => {
     <section className="py-20 bg-card">
       <div className="container mx-auto px-4">
         <div className="text-center mb-14">
-          <p className="text-gold font-mono text-sm tracking-widest uppercase mb-2">Connect With Us</p>
-          <h2 className="text-3xl md:text-4xl font-serif font-bold text-card-foreground">
+          <p className="text-gold font-semibold text-sm tracking-widest uppercase mb-2">Connect With Us</p>
+          <h2 className="text-3xl md:text-4xl font-sans font-bold text-card-foreground">
             Social Feed
           </h2>
         </div>
@@ -39,7 +39,7 @@ const SocialFeedSection = () => {
           {socialPosts.map((post, i) => (
             <div
               key={i}
-              className="p-6 rounded-lg border border-border bg-background hover:shadow-md transition-shadow"
+              className="group p-6 rounded-lg border border-border bg-background hover:shadow-lg transition-all duration-300 hover:-translate-y-1"
             >
               <div className="flex items-center gap-3 mb-4">
                 <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
