@@ -40,7 +40,7 @@ const HeroSection = () => {
       const tick = () => {
         const diff = targetTime.current - currentTime.current;
         // Lerp factor — lower = smoother but more latent
-        currentTime.current += diff * 0.12;
+        currentTime.current += diff * 0.05;
 
         if (Math.abs(diff) > 0.01) {
           video.currentTime = currentTime.current;
