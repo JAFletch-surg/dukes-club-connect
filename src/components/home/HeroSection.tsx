@@ -8,81 +8,90 @@ const HeroSection = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
+  const targetTime = useRef(0);
+  const currentTime = useRef(0);
+  const rafId = useRef(0);
 
   useEffect(() => {
     const video = videoRef.current;
-    if (!video) return;
+    const section = sectionRef.current;
+    if (!video || !section) return;
 
-    // Wait for video metadata to load
-    const onMetadataLoaded = () => {
+    const onReady = () => {
+      const duration = video.duration;
+      if (!duration || !isFinite(duration)) return;
+
       const handleScroll = () => {
-        if (!sectionRef.current || !video) return;
+        const rect = section.getBoundingClientRect();
+        const sectionHeight = section.offsetHeight;
+        const progress = Math.min(Math.max(-rect.top / (sectionHeight - window.innerHeight), 0), 1);
+        targetTime.current = progress * duration;
 
-        const rect = sectionRef.current.getBoundingClientRect();
-        const sectionHeight = sectionRef.current.offsetHeight;
-        // Progress: 0 at top of section, 1 when section scrolled past
-        const scrollProgress = Math.min(
-          Math.max(-rect.top / (sectionHeight * 0.8), 0),
-          1
-        );
-
-        // Scrub video based on scroll
-        if (video.duration && isFinite(video.duration)) {
-          video.currentTime = scrollProgress * video.duration;
-        }
-
-        // Parallax on content: moves up slower
+        // Content parallax
         if (contentRef.current) {
-          const yOffset = scrollProgress * 120;
-          const opacity = 1 - scrollProgress * 1.5;
-          contentRef.current.style.transform = `translateY(-${yOffset}px)`;
+          const yOffset = progress * 100;
+          const opacity = 1 - progress * 1.8;
+          contentRef.current.style.transform = `translate3d(0, -${yOffset}px, 0)`;
           contentRef.current.style.opacity = `${Math.max(opacity, 0)}`;
         }
       };
 
+      // Smooth interpolation loop — lerp toward target time
+      const tick = () => {
+        const diff = targetTime.current - currentTime.current;
+        // Lerp factor — lower = smoother but more latent
+        currentTime.current += diff * 0.12;
+
+        if (Math.abs(diff) > 0.01) {
+          video.currentTime = currentTime.current;
+        }
+
+        rafId.current = requestAnimationFrame(tick);
+      };
+
       window.addEventListener("scroll", handleScroll, { passive: true });
-      handleScroll(); // initial
-      return () => window.removeEventListener("scroll", handleScroll);
+      handleScroll();
+      rafId.current = requestAnimationFrame(tick);
+
+      return () => {
+        window.removeEventListener("scroll", handleScroll);
+        cancelAnimationFrame(rafId.current);
+      };
     };
 
-    video.addEventListener("loadedmetadata", onMetadataLoaded);
-
-    // Also try immediately if already loaded
     if (video.readyState >= 1) {
-      const cleanup = onMetadataLoaded();
-      return () => {
-        video.removeEventListener("loadedmetadata", onMetadataLoaded);
-        cleanup?.();
-      };
+      const cleanup = onReady();
+      return cleanup;
     }
 
-    return () => video.removeEventListener("loadedmetadata", onMetadataLoaded);
+    let cleanup: (() => void) | undefined;
+    const handler = () => { cleanup = onReady(); };
+    video.addEventListener("loadedmetadata", handler);
+    return () => {
+      video.removeEventListener("loadedmetadata", handler);
+      cleanup?.();
+      cancelAnimationFrame(rafId.current);
+    };
   }, []);
 
   return (
-    <section
-      ref={sectionRef}
-      className="relative h-[150vh]"
-    >
-      {/* Sticky video container */}
+    <section ref={sectionRef} className="relative h-[150vh]">
       <div className="sticky top-0 h-screen overflow-hidden">
         <video
           ref={videoRef}
-          className="absolute inset-0 w-full h-full object-cover"
+          className="absolute inset-0 w-full h-full object-cover will-change-auto"
           src="/videos/hero-bg.mp4"
           muted
           playsInline
           preload="auto"
         />
 
-        {/* Dark overlay */}
         <div className="absolute inset-0 bg-navy/60" />
         <div className="absolute inset-0 bg-gradient-to-b from-navy/30 via-transparent to-navy/80" />
 
-        {/* Content */}
         <div
           ref={contentRef}
-          className="absolute inset-0 flex items-center justify-center"
+          className="absolute inset-0 flex items-center justify-center will-change-transform"
         >
           <div className="container mx-auto px-4 text-center">
             <img
@@ -109,7 +118,6 @@ const HeroSection = () => {
           </div>
         </div>
 
-        {/* Scroll indicator */}
         <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
           <div className="w-6 h-10 rounded-full border-2 border-primary-foreground/40 flex items-start justify-center p-1">
             <div className="w-1.5 h-3 rounded-full bg-gold animate-pulse" />
