@@ -38,7 +38,7 @@ const EventsSection = () => {
             <p className="text-gold font-mono text-sm tracking-widest uppercase mb-2">
               Courses and Webinars
             </p>
-            <h2 className="text-3xl md:text-4xl font-serif font-bold text-navy-foreground">
+            <h2 className="text-3xl md:text-4xl font-sans font-bold text-navy-foreground">
               Upcoming Events
             </h2>
             <p className="mt-3 text-navy-foreground/80 max-w-2xl text-sm md:text-base">
@@ -69,7 +69,7 @@ const EventsSection = () => {
                 />
               </div>
               <div className="p-6">
-                <h3 className="text-lg font-serif font-semibold text-navy-foreground mb-2">
+                <h3 className="text-lg font-sans font-semibold text-navy-foreground mb-2">
                   {event.title}
                 </h3>
                 <p className="text-sm text-navy-foreground/70 mb-4">{event.description}</p>
