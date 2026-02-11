@@ -59,7 +59,7 @@ const EventsSection = () => {
           {upcomingEvents.map((event) => (
             <div
               key={event.title}
-              className="group rounded-lg border border-navy-foreground/20 overflow-hidden hover:shadow-lg transition-all duration-300 hover:-translate-y-1 bg-navy"
+              className="group rounded-lg border-2 border-navy-foreground/40 overflow-hidden hover:shadow-lg transition-all duration-300 hover:-translate-y-1 bg-navy"
             >
               <div className="aspect-[4/3] overflow-hidden">
                 <img
