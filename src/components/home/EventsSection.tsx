@@ -1,74 +1,87 @@
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import { Calendar, MapPin, ArrowRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
+import awrImage from "@/assets/events/awr-yellow.png";
+import ibdImage from "@/assets/events/ibd-yellow.png";
+import robotImage from "@/assets/events/robot.png";
 
 const upcomingEvents = [
   {
-    title: "Annual Weekend 2026",
-    date: "14-16 March 2026",
-    location: "Royal College of Surgeons, London",
+    title: "Intestinal Failure & Abdominal Wall Day",
     tag: "Conference",
-    description: "Three days of lectures, workshops, and hands-on surgical training with leading colorectal surgeons.",
+    description:
+      "Lecture-based course on complex herniae, intestinal failure, and abdominal wall management. Free registration.",
+    image: awrImage,
   },
   {
-    title: "FRCS Viva Preparation Course",
-    date: "22 April 2026",
-    location: "Online",
-    tag: "Exam Prep",
-    description: "Interactive viva practice with experienced examiners and structured feedback.",
-  },
-  {
-    title: "Robotic Colorectal Surgery Masterclass",
-    date: "10 May 2026",
-    location: "Birmingham QE Hospital",
+    title: "ACPGBI 2026: Advanced IBD Surgery Course",
     tag: "Workshop",
-    description: "Hands-on robotic surgery training with simulation and live case observation.",
+    description:
+      "Hands on wet lab workshops on Ileo-anal Pouch and formation of Kono-S anastomosis. Expert consultant faculty.",
+    image: ibdImage,
+  },
+  {
+    title: "Robotic Cadaveric CME Course",
+    tag: "Workshop",
+    description:
+      "Hands-on cadaveric training with evening Zoom masterclass. Dukes' members save £150.",
+    image: robotImage,
   },
 ];
 
 const EventsSection = () => {
   return (
-    <section className="py-20 bg-background">
+    <section className="py-20 bg-navy">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-14">
-          <p className="text-gold font-mono text-sm tracking-widest uppercase mb-2">Stay Updated</p>
-          <h2 className="text-3xl md:text-4xl font-serif font-bold text-foreground">
-            Upcoming Events
-          </h2>
+        <div className="flex flex-col md:flex-row md:items-end md:justify-between mb-14">
+          <div>
+            <p className="text-gold font-mono text-sm tracking-widest uppercase mb-2">
+              Courses and Webinars
+            </p>
+            <h2 className="text-3xl md:text-4xl font-serif font-bold text-navy-foreground">
+              Upcoming Events
+            </h2>
+            <p className="mt-3 text-navy-foreground/80 max-w-2xl text-sm md:text-base">
+              Upcoming Webinars and Courses: Join us for a series of informative sessions and
+              engaging courses designed to enhance your knowledge and skills.
+            </p>
+          </div>
+          <div className="mt-4 md:mt-0">
+            <Link to="/events">
+              <Button variant="hero" size="lg">
+                View all
+              </Button>
+            </Link>
+          </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {upcomingEvents.map((event) => (
             <div
               key={event.title}
-              className="group rounded-lg border border-border bg-card overflow-hidden hover:shadow-lg transition-all duration-300 hover:-translate-y-1"
+              className="group rounded-lg border border-navy-foreground/20 overflow-hidden hover:shadow-lg transition-all duration-300 hover:-translate-y-1 bg-navy"
             >
-              <div className="h-2" style={{ background: "var(--gradient-gold)" }} />
+              <div className="aspect-[4/3] overflow-hidden">
+                <img
+                  src={event.image}
+                  alt={event.title}
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                />
+              </div>
               <div className="p-6">
-                <span className="inline-block text-xs font-mono font-semibold text-gold bg-gold/10 px-2 py-1 rounded mb-3">
-                  {event.tag}
-                </span>
-                <h3 className="text-lg font-semibold text-card-foreground mb-3">{event.title}</h3>
-                <p className="text-sm text-muted-foreground mb-4">{event.description}</p>
-                <div className="flex items-center gap-4 text-xs text-muted-foreground">
-                  <span className="flex items-center gap-1">
-                    <Calendar size={14} /> {event.date}
-                  </span>
-                  <span className="flex items-center gap-1">
-                    <MapPin size={14} /> {event.location}
-                  </span>
-                </div>
+                <h3 className="text-lg font-serif font-semibold text-navy-foreground mb-2">
+                  {event.title}
+                </h3>
+                <p className="text-sm text-navy-foreground/70 mb-4">{event.description}</p>
+                <Link
+                  to="/events"
+                  className="inline-flex items-center gap-1 text-sm font-medium text-gold hover:text-gold/80 transition-colors"
+                >
+                  Read more <ArrowRight size={14} />
+                </Link>
               </div>
             </div>
           ))}
-        </div>
-
-        <div className="text-center">
-          <Link to="/events">
-            <Button variant="outline" size="lg">
-              View All Events <ArrowRight className="ml-1" size={16} />
-            </Button>
-          </Link>
         </div>
       </div>
     </section>
