@@ -19,4 +19,5 @@ export const News = () => <PlaceholderPage title="News & Blog" />;
 export const Exams = () => <PlaceholderPage title="Exams & Training" />;
 export const AnnualWeekend = () => <PlaceholderPage title="Annual Weekend" />;
 export const Contact = () => <PlaceholderPage title="Contact Us" />;
-export const Join = () => <PlaceholderPage title="Join / Login" />;
+export const Join = () => <PlaceholderPage title="Join Dukes' Club" />;
+export const Login = () => <PlaceholderPage title="Member Login" />;
