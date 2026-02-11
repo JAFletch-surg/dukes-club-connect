@@ -1,10 +1,12 @@
+import acpgbiLogo from "@/assets/sponsors/acpgbi.png";
+
 const sponsors = [
-  "Royal College of Surgeons",
-  "ACPGBI",
-  "Medtronic",
-  "Intuitive Surgical",
-  "Ethicon",
-  "Stryker",
+  { name: "ACPGBI", logo: acpgbiLogo },
+  { name: "Royal College of Surgeons", logo: null },
+  { name: "Medtronic", logo: null },
+  { name: "Intuitive Surgical", logo: null },
+  { name: "Ethicon", logo: null },
+  { name: "Stryker", logo: null },
 ];
 
 const SponsorsSection = () => {
@@ -12,15 +14,25 @@ const SponsorsSection = () => {
     <section className="py-16 bg-background border-t border-border">
       <div className="container mx-auto px-4">
         <p className="text-center text-sm font-semibold tracking-widest uppercase text-muted-foreground mb-10">
-          Our Corporate Sponsors
+          Our Corporate Sponsors & Partners
         </p>
-        <div className="flex flex-wrap items-center justify-center gap-8 md:gap-14">
-          {sponsors.map((name) => (
+        <div className="flex flex-wrap items-center justify-center gap-10 md:gap-16">
+          {sponsors.map((sponsor) => (
             <div
-              key={name}
-              className="text-muted-foreground/50 hover:text-foreground transition-colors text-lg font-sans font-semibold"
+              key={sponsor.name}
+              className="flex items-center justify-center h-16 grayscale hover:grayscale-0 opacity-60 hover:opacity-100 transition-all duration-300"
             >
-              {name}
+              {sponsor.logo ? (
+                <img
+                  src={sponsor.logo}
+                  alt={sponsor.name}
+                  className="h-14 max-w-[180px] object-contain"
+                />
+              ) : (
+                <span className="text-muted-foreground text-lg font-semibold">
+                  {sponsor.name}
+                </span>
+              )}
             </div>
           ))}
         </div>
