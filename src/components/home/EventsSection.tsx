@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, CalendarDays, MapPin, PoundSterling } from "lucide-react";
 import awrImage from "@/assets/events/awr-yellow.png";
 import ibdImage from "@/assets/events/ibd-yellow.png";
 import robotImage from "@/assets/events/robot.png";
@@ -9,13 +9,19 @@ const upcomingEvents = [
   {
     title: "Intestinal Failure & Abdominal Wall Day",
     tag: "Conference",
+    date: "15 Mar 2026",
+    location: "Royal College of Surgeons, London",
+    price: "Free",
     description:
-      "Lecture-based course on complex herniae, intestinal failure, and abdominal wall management. Free registration.",
+      "Lecture-based course on complex herniae, intestinal failure, and abdominal wall management.",
     image: awrImage,
   },
   {
     title: "ACPGBI 2026: Advanced IBD Surgery Course",
     tag: "Workshop",
+    date: "22–23 Apr 2026",
+    location: "Birmingham NEC",
+    price: "£250",
     description:
       "Hands on wet lab workshops on Ileo-anal Pouch and formation of Kono-S anastomosis. Expert consultant faculty.",
     image: ibdImage,
@@ -23,8 +29,11 @@ const upcomingEvents = [
   {
     title: "Robotic Cadaveric CME Course",
     tag: "Workshop",
+    date: "10 May 2026",
+    location: "Guy's Hospital, London",
+    price: "£450 (£300 members)",
     description:
-      "Hands-on cadaveric training with evening Zoom masterclass. Dukes' members save £150.",
+      "Hands-on cadaveric training with evening Zoom masterclass.",
     image: robotImage,
   },
 ];
@@ -69,9 +78,23 @@ const EventsSection = () => {
                 />
               </div>
               <div className="p-6">
-                <h3 className="text-lg font-sans font-semibold text-navy-foreground mb-2">
+                <h3 className="text-lg font-sans font-semibold text-navy-foreground mb-3">
                   {event.title}
                 </h3>
+                <div className="space-y-1.5 mb-3">
+                  <div className="flex items-center gap-2 text-sm text-navy-foreground/70">
+                    <CalendarDays size={14} className="text-gold shrink-0" />
+                    <span>{event.date}</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-sm text-navy-foreground/70">
+                    <MapPin size={14} className="text-gold shrink-0" />
+                    <span>{event.location}</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-sm text-navy-foreground/70">
+                    <PoundSterling size={14} className="text-gold shrink-0" />
+                    <span>{event.price}</span>
+                  </div>
+                </div>
                 <p className="text-sm text-navy-foreground/70 mb-4">{event.description}</p>
                 <Link
                   to="/events"
