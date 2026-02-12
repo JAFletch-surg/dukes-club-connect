@@ -10,7 +10,7 @@ const navLinks = [
   { label: "Events & Courses", path: "/events" },
   { label: "News & Blog", path: "/news" },
   { label: "Exams & Training", path: "/exams" },
-  { label: "Annual Weekend", path: "/annual-weekend" },
+  
   { label: "Contact", path: "/contact" },
 ];
 
