@@ -1,11 +1,23 @@
 import { Link } from "react-router-dom";
 import { Twitter, Instagram, Linkedin, Mail } from "lucide-react";
 import logoWhite from "@/assets/logo-white.png";
+import footerBg from "@/assets/footer-abstract.jpg";
 
 const Footer = () => {
   return (
-    <footer className="bg-navy text-navy-foreground">
-      <div className="container mx-auto px-4 py-12">
+    <footer className="relative text-navy-foreground overflow-hidden">
+      {/* Abstract background image */}
+      <div className="absolute inset-0">
+        <img
+          src={footerBg}
+          alt=""
+          className="w-full h-full object-cover"
+          aria-hidden="true"
+        />
+        <div className="absolute inset-0 bg-navy/80" />
+      </div>
+
+      <div className="relative container mx-auto px-4 py-12">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div>
             <img src={logoWhite} alt="The Dukes' Club" className="h-12 mb-4" />
