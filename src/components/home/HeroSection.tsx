@@ -29,8 +29,8 @@ const HeroSection = () => {
 
         // Content parallax
         if (contentRef.current) {
-          const yOffset = progress * 100;
-          const opacity = 1 - progress * 1.8;
+        const yOffset = progress * 60;
+          const opacity = 1 - progress * 1.2;
           contentRef.current.style.transform = `translate3d(0, -${yOffset}px, 0)`;
           contentRef.current.style.opacity = `${Math.max(opacity, 0)}`;
         }
