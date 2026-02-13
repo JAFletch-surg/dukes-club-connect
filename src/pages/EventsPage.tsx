@@ -283,15 +283,13 @@ const EventsPage = () => {
 
       {/* Featured Event */}
       {featuredEvent && (
-        <section className="relative bg-background border-t border-border/20 overflow-hidden">
-          {/* Subtle gold gradient accent */}
-          <div className="absolute inset-0 bg-gradient-to-br from-gold/5 via-transparent to-gold/10 pointer-events-none" />
-          <div className="relative container mx-auto px-4 py-12">
+        <section className="bg-primary">
+          <div className="container mx-auto px-4 py-12">
             <div className="flex items-center gap-2 mb-6">
-              <Star size={16} className="text-gold fill-gold" />
-              <p className="text-gold font-semibold text-sm tracking-widest uppercase">Featured Event</p>
+              <Star size={16} className="text-primary-foreground fill-primary-foreground" />
+              <p className="text-primary-foreground font-semibold text-sm tracking-widest uppercase">Featured Event</p>
             </div>
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 rounded-lg border-2 border-gold/30 overflow-hidden bg-navy shadow-xl">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 rounded-lg border-2 border-primary-foreground overflow-hidden bg-navy shadow-xl">
               <div className="aspect-[4/3] lg:aspect-auto overflow-hidden">
                 <img
                   src={featuredEvent.image}
