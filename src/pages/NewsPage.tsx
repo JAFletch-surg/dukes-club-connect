@@ -24,6 +24,7 @@ const categories = [
 
 type NewsItem = {
   title: string;
+  slug: string;
   category: (typeof categories)[number];
   date: string;
   sortDate: string;
@@ -34,76 +35,76 @@ type NewsItem = {
 const allNews: NewsItem[] = [
   {
     title: "2026 Annual Weekend Registration Now Open",
+    slug: "2026-annual-weekend-registration-now-open",
     category: "Announcement",
     date: "10 Feb 2026",
     sortDate: "2026-02-10",
-    description:
-      "Early bird registration is available for the Dukes' Club Annual Weekend. Secure your place at the premier colorectal surgery training event of the year. Members receive priority booking and discounted rates.",
+    description: "Early bird registration is available for the Dukes' Club Annual Weekend. Secure your place at the premier colorectal surgery training event of the year. Members receive priority booking and discounted rates.",
     featured: true,
   },
   {
     title: "New FRCS Revision Course Launched",
+    slug: "new-frcs-revision-course-launched",
     category: "Education",
     date: "28 Jan 2026",
     sortDate: "2026-01-28",
-    description:
-      "A comprehensive online revision course for Section 2 FRCS is now available to all Dukes' Club members, featuring mock vivas and structured question banks.",
+    description: "A comprehensive online revision course for Section 2 FRCS is now available to all Dukes' Club members, featuring mock vivas and structured question banks.",
   },
   {
     title: "Fellowship Applications: Deadline Approaching",
+    slug: "fellowship-applications-deadline-approaching",
     category: "Careers",
     date: "15 Jan 2026",
     sortDate: "2026-01-15",
-    description:
-      "Applications for the 2026–27 colorectal fellowship posts close on 28 February. Visit the fellowships directory for full details and eligibility criteria.",
+    description: "Applications for the 2026–27 colorectal fellowship posts close on 28 February. Visit the fellowships directory for full details and eligibility criteria.",
   },
   {
     title: "Updated Guidelines for Rectal Cancer Management",
+    slug: "updated-guidelines-rectal-cancer-management",
     category: "Research",
     date: "5 Jan 2026",
     sortDate: "2026-01-05",
-    description:
-      "New NICE guidelines on the management of locally advanced rectal cancer have been published, with significant implications for surgical training and practice.",
+    description: "New NICE guidelines on the management of locally advanced rectal cancer have been published, with significant implications for surgical training and practice.",
   },
   {
     title: "Dukes' Club Trainee Survey Results 2025",
+    slug: "dukes-club-trainee-survey-results-2025",
     category: "Member News",
     date: "18 Dec 2025",
     sortDate: "2025-12-18",
-    description:
-      "Results from the annual trainee satisfaction survey are now available. Key findings highlight areas of excellence and opportunities for improvement in colorectal training.",
+    description: "Results from the annual trainee satisfaction survey are now available. Key findings highlight areas of excellence and opportunities for improvement in colorectal training.",
   },
   {
     title: "ACPGBI Joint Statement on AI in Colorectal Surgery",
+    slug: "acpgbi-joint-statement-ai-colorectal-surgery",
     category: "Policy",
     date: "2 Dec 2025",
     sortDate: "2025-12-02",
-    description:
-      "A joint position statement has been released outlining the responsible integration of artificial intelligence tools in colorectal surgical practice and training.",
+    description: "A joint position statement has been released outlining the responsible integration of artificial intelligence tools in colorectal surgical practice and training.",
   },
   {
     title: "Robotic Surgery Webinar Series Announced",
+    slug: "robotic-surgery-webinar-series-announced",
     category: "Events",
     date: "20 Nov 2025",
     sortDate: "2025-11-20",
-    description:
-      "A new monthly webinar series covering robotic techniques in colorectal surgery will launch in January 2026, featuring leading UK and international faculty.",
+    description: "A new monthly webinar series covering robotic techniques in colorectal surgery will launch in January 2026, featuring leading UK and international faculty.",
   },
   {
     title: "Annual Research Prize Winners Announced",
+    slug: "annual-research-prize-winners-announced",
     category: "Research",
     date: "10 Nov 2025",
     sortDate: "2025-11-10",
-    description:
-      "Congratulations to this year's winners of the Dukes' Club research prizes. Outstanding submissions were received across clinical, translational, and basic science categories.",
+    description: "Congratulations to this year's winners of the Dukes' Club research prizes. Outstanding submissions were received across clinical, translational, and basic science categories.",
   },
   {
     title: "New Committee Members Elected",
+    slug: "new-committee-members-elected",
     category: "General",
     date: "1 Nov 2025",
     sortDate: "2025-11-01",
-    description:
-      "The Dukes' Club is pleased to welcome three new committee members following the annual elections. They bring expertise in IBD, pelvic floor, and surgical education.",
+    description: "The Dukes' Club is pleased to welcome three new committee members following the annual elections. They bring expertise in IBD, pelvic floor, and surgical education.",
   },
 ];
 
@@ -128,7 +129,7 @@ const NewsCard = ({ item }: { item: NewsItem }) => (
       </h3>
       <p className="text-sm text-muted-foreground mb-4 line-clamp-3">{item.description}</p>
       <Link
-        to="/news"
+        to={`/news/${item.slug}`}
         className="inline-flex items-center gap-1 text-sm font-medium text-gold hover:text-gold/80 transition-colors"
       >
         Read more <ArrowRight size={14} />

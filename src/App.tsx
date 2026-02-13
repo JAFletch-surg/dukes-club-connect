@@ -11,6 +11,7 @@ import NewsPage from "./pages/NewsPage";
 import AboutPage from "./pages/AboutPage";
 import EventDetailPage from "./pages/EventDetailPage";
 import ContactPage from "./pages/ContactPage";
+import PostDetailPage from "./pages/PostDetailPage";
 
 const queryClient = new QueryClient();
 
@@ -26,6 +27,7 @@ const App = () => (
           <Route path="/events" element={<EventsPage />} />
           <Route path="/events/:slug" element={<EventDetailPage />} />
           <Route path="/news" element={<NewsPage />} />
+          <Route path="/news/:slug" element={<PostDetailPage />} />
           <Route path="/exams" element={<Exams />} />
           <Route path="/annual-weekend" element={<AnnualWeekend />} />
           <Route path="/contact" element={<ContactPage />} />
