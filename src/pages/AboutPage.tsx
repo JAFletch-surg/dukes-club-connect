@@ -274,7 +274,7 @@ const AboutPage = () => {
       </section>
 
       {/* Executive Committee */}
-      <section className="bg-navy py-20">
+      <section className="bg-background py-20">
         <div className="container mx-auto px-4">
           <AnimatedSection className="text-center mb-12">
             <p className="text-gold font-semibold text-sm tracking-widest uppercase mb-3">
