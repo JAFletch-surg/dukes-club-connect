@@ -70,13 +70,15 @@ const EventsSection = () => {
               key={event.title}
               className="group rounded-lg border-2 border-navy-foreground overflow-hidden hover:shadow-lg transition-all duration-300 hover:-translate-y-1 bg-navy"
             >
-              <div className="aspect-video md:aspect-[4/3] overflow-hidden">
-                <img
-                  src={event.image}
-                  alt={event.title}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                />
-              </div>
+              <Link to="/events" className="block">
+                <div className="h-24 md:h-auto md:aspect-[4/3] overflow-hidden">
+                  <img
+                    src={event.image}
+                    alt={event.title}
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                </div>
+              </Link>
               <div className="p-6">
                 <h3 className="text-lg font-sans font-semibold text-navy-foreground mb-3">
                   {event.title}
