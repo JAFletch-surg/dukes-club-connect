@@ -70,7 +70,7 @@ const EventsSection = () => {
               key={event.title}
               className="group rounded-lg border-2 border-navy-foreground overflow-hidden hover:shadow-lg transition-all duration-300 hover:-translate-y-1 bg-navy"
             >
-              <div className="aspect-[4/3] overflow-hidden">
+              <div className="aspect-video md:aspect-[4/3] overflow-hidden">
                 <img
                   src={event.image}
                   alt={event.title}
