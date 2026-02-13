@@ -15,7 +15,7 @@ import {
 import { Mail, MapPin, Send, CheckCircle } from "lucide-react";
 import { useScrollAnimation } from "@/hooks/use-scroll-animation";
 import { cn } from "@/lib/utils";
-import logoNavy from "@/assets/logo-navy.png";
+import logoContact from "@/assets/logo-contact.png";
 
 const AnimatedSection = ({
   children,
@@ -95,9 +95,9 @@ const ContactPage = () => {
               <AnimatedSection>
                 <div className="mb-10">
                   <img
-                    src={logoNavy}
+                    src={logoContact}
                     alt="Dukes' Club"
-                    className="h-16 mb-8"
+                    className="h-20 mb-8"
                   />
                   <p className="text-foreground/70 leading-relaxed mb-8">
                     The Dukes' Club is the national trainee association for colorectal surgery in the United Kingdom. Whether you're a current member or considering joining, we're here to help.
