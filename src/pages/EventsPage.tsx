@@ -354,7 +354,7 @@ const EventsPage = () => {
                 placeholder="Search events..."
                 value={search}
                 onChange={(e) => { setSearch(e.target.value); setPage(1); }}
-                className="pl-9 bg-navy-foreground/10 border-navy-foreground/20 text-navy-foreground placeholder:text-navy-foreground/40 focus:border-gold/50 focus:ring-gold/20"
+                className="pl-9 pt-3 pb-1 bg-navy-foreground/10 border-navy-foreground/20 text-navy-foreground placeholder:text-navy-foreground/40 focus:border-gold/50 focus:ring-gold/20"
               />
             </div>
             <Select value={sortBy} onValueChange={(v) => setSortBy(v as SortOption)}>
