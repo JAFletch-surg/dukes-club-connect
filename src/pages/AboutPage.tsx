@@ -289,7 +289,7 @@ const RegionalRepCard = ({
     <div
       ref={ref}
       className={cn(
-        "group relative flex items-center gap-4 rounded-lg border-2 border-navy-foreground overflow-hidden bg-navy p-4 transition-all duration-700 ease-out hover:shadow-lg hover:-translate-y-1",
+        "group relative flex items-center gap-4 rounded-lg border border-navy-foreground overflow-hidden bg-navy p-4 transition-all duration-700 ease-out hover:shadow-lg hover:-translate-y-1",
         isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
       )}
       style={{ transitionDelay: `${(index % 3) * 100}ms` }}
@@ -375,7 +375,7 @@ const AboutPage = () => {
       </section>
 
       {/* Executive Committee */}
-      <section className="bg-navy py-20">
+      <section style={{ backgroundColor: "hsl(220, 80%, 55%)" }} className="py-20">
         <div className="container mx-auto px-4">
           <AnimatedSection className="text-center mb-12">
             <p className="text-gold font-semibold text-sm tracking-widest uppercase mb-3">
