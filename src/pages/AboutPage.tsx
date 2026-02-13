@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import logoWhite from "@/assets/logo-white.png";
+import cardBg from "@/assets/card-bg.png";
 import { useScrollAnimation } from "@/hooks/use-scroll-animation";
 import { ChevronDown, MapPin, User } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -186,12 +186,12 @@ const CommitteeCard = ({
       )}
       style={{ transitionDelay: `${(index % 3) * 100}ms` }}
     >
-      {/* Faded logo watermark */}
+      {/* Background image */}
       <img
-        src={logoWhite}
+        src={cardBg}
         alt=""
         aria-hidden="true"
-        className="absolute bottom-4 right-4 w-24 h-24 object-contain opacity-[0.06] pointer-events-none select-none"
+        className="absolute inset-0 w-full h-full object-cover opacity-30 pointer-events-none select-none"
       />
 
       {/* Photo / Avatar */}
