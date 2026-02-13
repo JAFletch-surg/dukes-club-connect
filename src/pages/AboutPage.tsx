@@ -3,7 +3,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import cardBg from "@/assets/card-bg.png";
 import { useScrollAnimation } from "@/hooks/use-scroll-animation";
-import { ChevronDown, MapPin, User } from "lucide-react";
+import { ChevronDown, MapPin, User, FileText, Download, BookOpen } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 import jasonImg from "@/assets/committee/jason.png";
@@ -397,6 +397,82 @@ const AboutPage = () => {
         </div>
       </section>
 
+      {/* Constitution & Governance */}
+      <section style={{ backgroundColor: "hsl(220, 80%, 55%)" }} className="py-20">
+        <div className="container mx-auto px-4">
+          <AnimatedSection className="text-center mb-12">
+            <p className="text-gold font-semibold text-sm tracking-widest uppercase mb-3">
+              Governance
+            </p>
+            <h2 className="text-3xl md:text-4xl font-sans font-bold text-navy-foreground">
+              Constitution & Roles
+            </h2>
+            <p className="mt-4 text-navy-foreground/80 max-w-2xl mx-auto">
+              The Dukes' Club is governed by a formal constitution. Each executive committee role carries specific responsibilities outlined in the documents below.
+            </p>
+          </AnimatedSection>
+
+          <div className="max-w-4xl mx-auto">
+            {/* Constitution */}
+            <AnimatedSection delay={100}>
+              <a
+                href="#"
+                className="group flex items-center gap-4 rounded-lg border-2 border-navy-foreground bg-navy p-6 mb-4 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300"
+              >
+                <div className="w-12 h-12 rounded-full bg-gold/20 flex items-center justify-center shrink-0">
+                  <BookOpen size={22} className="text-gold" />
+                </div>
+                <div className="flex-1">
+                  <h3 className="text-lg font-sans font-semibold text-navy-foreground">
+                    Dukes' Club Constitution
+                  </h3>
+                  <p className="text-sm text-navy-foreground/60">
+                    The governing document of the Dukes' Club, outlining objectives, membership, and committee structure.
+                  </p>
+                </div>
+                <Download size={18} className="text-navy-foreground/40 group-hover:text-gold transition-colors shrink-0" />
+              </a>
+            </AnimatedSection>
+
+            {/* Role Documents */}
+            <AnimatedSection delay={200}>
+              <h3 className="text-lg font-sans font-semibold text-navy-foreground mb-4 mt-8">
+                Roles & Responsibilities
+              </h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                {[
+                  "President",
+                  "Vice-President",
+                  "Past-President",
+                  "Secretary",
+                  "Web Master",
+                  "IBD Lead",
+                  "Abdominal Wall / Intestinal Failure Lead",
+                  "Pelvic Floor Lead",
+                  "Proctology Lead",
+                  "Endoscopy Lead",
+                  "ASiT Representative",
+                  "Research Lead",
+                  "Advanced Cancer Lead",
+                  "Training and Education Lead",
+                ].map((role) => (
+                  <a
+                    key={role}
+                    href="#"
+                    className="group flex items-center gap-3 rounded-lg border border-navy-foreground/30 bg-navy p-4 hover:border-gold/50 hover:shadow-md transition-all duration-300"
+                  >
+                    <FileText size={16} className="text-gold/60 group-hover:text-gold shrink-0 transition-colors" />
+                    <span className="text-sm font-medium text-navy-foreground">{role}</span>
+                    <Download size={14} className="text-navy-foreground/30 group-hover:text-gold ml-auto shrink-0 transition-colors" />
+                  </a>
+                ))}
+              </div>
+            </AnimatedSection>
+          </div>
+        </div>
+      </section>
+
+      {/* Regional Representatives */}
       <section style={{ backgroundColor: "hsl(220, 80%, 55%)" }} className="py-20">
         <div className="container mx-auto px-4">
           <AnimatedSection className="text-center mb-12">
