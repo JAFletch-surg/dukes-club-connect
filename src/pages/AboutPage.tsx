@@ -198,7 +198,7 @@ const CommitteeCard = ({
 
       {/* Photo / Avatar */}
       <div className="relative z-10 pt-8 pb-4 flex items-center justify-center">
-        <div className="w-36 h-36 rounded-full bg-navy-foreground/10 flex items-center justify-center border-4 border-navy-foreground overflow-hidden shadow-md transition-transform duration-300 group-hover:scale-110">
+        <div className="w-36 h-36 rounded-full bg-navy-foreground/10 flex items-center justify-center overflow-hidden shadow-md transition-transform duration-300 group-hover:scale-110">
           {member.image ? (
             <img src={member.image} alt={member.name} className="w-full h-full object-cover" />
           ) : (
