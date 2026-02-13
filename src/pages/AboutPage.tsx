@@ -191,12 +191,12 @@ const CommitteeCard = ({
         src={cardBg}
         alt=""
         aria-hidden="true"
-        className="absolute inset-0 w-full h-full object-cover opacity-30 pointer-events-none select-none"
+        className="absolute inset-0 w-full h-full object-cover opacity-20 pointer-events-none select-none"
       />
 
       {/* Photo / Avatar */}
       <div className="relative pt-8 pb-4 flex items-center justify-center">
-        <div className="w-36 h-36 rounded-full bg-navy-foreground/10 flex items-center justify-center border-2 border-gold/30 overflow-hidden shadow-md">
+        <div className="w-36 h-36 rounded-full bg-navy-foreground/10 flex items-center justify-center border-4 border-navy-foreground overflow-hidden shadow-md">
           {member.image ? (
             <img src={member.image} alt={member.name} className="w-full h-full object-cover" />
           ) : (
