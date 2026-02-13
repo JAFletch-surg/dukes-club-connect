@@ -185,26 +185,26 @@ const CommitteeCard = ({
       )}
       style={{ transitionDelay: `${(index % 3) * 100}ms` }}
     >
-      {/* Avatar area */}
-      <div className="bg-navy p-8 flex items-center justify-center">
-        <div className="w-24 h-24 rounded-full bg-navy-foreground/10 flex items-center justify-center border-2 border-gold/30 overflow-hidden">
+      {/* Photo / Avatar */}
+      <div className="pt-8 pb-4 flex items-center justify-center">
+        <div className="w-36 h-36 rounded-full bg-muted flex items-center justify-center border-3 border-gold/40 overflow-hidden shadow-md">
           {member.image ? (
             <img src={member.image} alt={member.name} className="w-full h-full object-cover" />
           ) : (
-            <User className="text-gold" size={40} />
+            <User className="text-gold/60" size={52} />
           )}
         </div>
       </div>
 
       {/* Info */}
-      <div className="p-6">
-        <span className="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-gold/10 text-gold mb-3 inline-block">
-          {member.role}
-        </span>
+      <div className="px-6 pb-6 text-center">
         <h3 className="text-lg font-sans font-semibold text-card-foreground mb-1">
           {member.name}
         </h3>
-        <div className="flex items-center gap-1.5 text-sm text-muted-foreground mb-4">
+        <span className="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-gold/10 text-gold mb-2 inline-block">
+          {member.role}
+        </span>
+        <div className="flex items-center justify-center gap-1.5 text-sm text-muted-foreground mb-4">
           <MapPin size={13} className="text-gold shrink-0" />
           <span>{member.placeOfWork}</span>
         </div>
@@ -229,7 +229,7 @@ const CommitteeCard = ({
             expanded ? "max-h-96 opacity-100 mt-3" : "max-h-0 opacity-0"
           )}
         >
-          <p className="text-sm text-muted-foreground leading-relaxed">
+          <p className="text-sm text-muted-foreground leading-relaxed text-left">
             {member.statement}
           </p>
         </div>
