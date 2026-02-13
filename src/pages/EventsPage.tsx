@@ -143,14 +143,16 @@ type SortOption = "date" | "price" | "dateAdded";
 
 const EventCard = ({ event }: { event: EventItem }) => (
   <div className="group rounded-lg border-2 border-navy-foreground overflow-hidden hover:shadow-lg transition-all duration-300 hover:-translate-y-1 bg-navy">
-    <div className="aspect-[4/3] overflow-hidden">
-      <img
-        src={event.image}
-        alt={event.title}
-        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-        loading="lazy"
-      />
-    </div>
+    <Link to={`/events/${event.slug}`} className="block">
+      <div className="h-24 md:h-auto md:aspect-[4/3] overflow-hidden">
+        <img
+          src={event.image}
+          alt={event.title}
+          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+          loading="lazy"
+        />
+      </div>
+    </Link>
     <div className="p-6">
       <div className="flex flex-wrap gap-1.5 mb-3">
         <Badge className="bg-gold/20 text-gold border-gold/30 hover:bg-gold/30 text-[10px]">
