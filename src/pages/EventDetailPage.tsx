@@ -285,8 +285,9 @@ const EventDetailPage = () => {
 
             {/* Sidebar */}
             <div className="lg:col-span-1">
+              <div className="sticky top-24">
               <AnimatedSection delay={200}>
-                <div className="rounded-lg border-2 border-navy-foreground/20 bg-navy-foreground/5 p-6 sticky top-24">
+                <div className="rounded-lg border-2 border-navy-foreground/20 bg-navy-foreground/5 p-6">
                   {/* Price */}
                   <div className="mb-6 text-center">
                     <p className="text-3xl font-bold text-navy-foreground">
@@ -418,6 +419,7 @@ const EventDetailPage = () => {
                   </div>
                 )}
               </AnimatedSection>
+              </div>
             </div>
           </div>
         </div>
