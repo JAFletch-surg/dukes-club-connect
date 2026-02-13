@@ -12,6 +12,7 @@ import {
 } from "lucide-react";
 import { useScrollAnimation } from "@/hooks/use-scroll-animation";
 import { cn } from "@/lib/utils";
+import blogStockImg from "@/assets/blog-stock.jpg";
 
 // Placeholder mock — will be replaced with Supabase query by slug
 const mockPost = {
@@ -195,33 +196,48 @@ const PostDetailPage = () => {
       </section>
 
       {/* Content */}
-      <section className="bg-navy py-16">
+      <section className="bg-background py-16">
         <div className="container mx-auto px-4 max-w-4xl">
-          <AnimatedSection>
-            <article className="prose prose-invert max-w-none">
-              {post.content_plain?.split("\n").map((paragraph, i) => (
-                <p
-                  key={i}
-                  className="text-navy-foreground/80 leading-relaxed mb-4"
-                >
-                  {paragraph}
-                </p>
-              ))}
-            </article>
-          </AnimatedSection>
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
+            <div className="lg:col-span-2">
+              <AnimatedSection>
+                <article className="prose max-w-none">
+                  {post.content_plain?.split("\n").map((paragraph, i) => (
+                    <p
+                      key={i}
+                      className="text-foreground/80 leading-relaxed mb-4"
+                    >
+                      {paragraph}
+                    </p>
+                  ))}
+                </article>
+              </AnimatedSection>
+            </div>
+
+            {/* Stock Image */}
+            <div className="lg:col-span-1">
+              <AnimatedSection delay={100}>
+                <img
+                  src={blogStockImg}
+                  alt="Surgical team in discussion"
+                  className="rounded-lg w-full object-cover aspect-[3/4] shadow-sm"
+                />
+              </AnimatedSection>
+            </div>
+          </div>
 
           {/* Author Card */}
           {post.author && (
-            <AnimatedSection delay={100} className="mt-16">
-              <div className="rounded-lg border-2 border-navy-foreground/20 bg-navy-foreground/5 p-6 flex items-center gap-4">
-                <div className="w-14 h-14 rounded-full bg-navy-foreground/10 flex items-center justify-center shrink-0">
-                  <User className="text-gold/60" size={24} />
+            <AnimatedSection delay={150} className="mt-16">
+              <div className="rounded-lg border border-border bg-card p-6 flex items-center gap-4">
+                <div className="w-14 h-14 rounded-full bg-muted flex items-center justify-center shrink-0">
+                  <User className="text-foreground/40" size={24} />
                 </div>
                 <div>
-                  <p className="text-sm font-semibold text-navy-foreground">
+                  <p className="text-sm font-semibold text-foreground">
                     {post.author.name}
                   </p>
-                  <p className="text-xs text-navy-foreground/60">
+                  <p className="text-xs text-muted-foreground">
                     {post.author.role}
                   </p>
                 </div>
