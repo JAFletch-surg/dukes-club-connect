@@ -8,6 +8,7 @@ import {
   MapPin,
   PoundSterling,
   Users,
+  User,
   Clock,
   ArrowLeft,
   ExternalLink,
@@ -49,6 +50,12 @@ const mockEvent = {
     { time: "15:30", title: "Tea Break" },
     { time: "16:00", title: "Expert Panel Q&A" },
     { time: "17:00", title: "Close" },
+  ],
+  faculty: [
+    { name: "Mr James Richardson", role: "Course Director", institution: "St Mark's Hospital, London" },
+    { name: "Miss Sarah Thompson", role: "Faculty", institution: "Oxford University Hospitals" },
+    { name: "Mr David Clarke", role: "Faculty", institution: "Leeds Teaching Hospitals" },
+    { name: "Miss Priya Patel", role: "Faculty", institution: "John Radcliffe Hospital, Oxford" },
   ],
   status: "published",
 };
@@ -133,6 +140,7 @@ const EventDetailPage = () => {
     ? formatPrice(event.member_price_pence)
     : null;
   const timetable = event.timetable_data as { time: string; title: string }[] | null;
+  const faculty = event.faculty as { name: string; role: string; institution: string }[] | null;
 
   return (
     <div className="min-h-screen bg-background">
@@ -383,6 +391,32 @@ const EventDetailPage = () => {
                     </a>
                   )}
                 </div>
+
+                {/* Faculty */}
+                {faculty && faculty.length > 0 && (
+                  <div className="mt-6 rounded-lg border-2 border-navy-foreground/20 bg-navy-foreground/5 p-6">
+                    <h3 className="text-sm font-semibold text-navy-foreground uppercase tracking-wider mb-4">
+                      Faculty
+                    </h3>
+                    <div className="space-y-4">
+                      {faculty.map((member, i) => (
+                        <div key={i} className="flex items-center gap-3">
+                          <div className="w-10 h-10 rounded-full bg-navy-foreground/10 flex items-center justify-center shrink-0">
+                            <User className="text-gold/60" size={18} />
+                          </div>
+                          <div>
+                            <p className="text-sm font-medium text-navy-foreground leading-tight">
+                              {member.name}
+                            </p>
+                            <p className="text-xs text-navy-foreground/60">
+                              {member.role} · {member.institution}
+                            </p>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
               </AnimatedSection>
             </div>
           </div>
