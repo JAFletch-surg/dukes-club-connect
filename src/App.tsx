@@ -9,6 +9,7 @@ import { Exams, AnnualWeekend, Contact, Join, Login } from "./pages/PlaceholderP
 import EventsPage from "./pages/EventsPage";
 import NewsPage from "./pages/NewsPage";
 import AboutPage from "./pages/AboutPage";
+import EventDetailPage from "./pages/EventDetailPage";
 
 const queryClient = new QueryClient();
 
@@ -22,6 +23,7 @@ const App = () => (
           <Route path="/" element={<Index />} />
           <Route path="/about" element={<AboutPage />} />
           <Route path="/events" element={<EventsPage />} />
+          <Route path="/events/:slug" element={<EventDetailPage />} />
           <Route path="/news" element={<NewsPage />} />
           <Route path="/exams" element={<Exams />} />
           <Route path="/annual-weekend" element={<AnnualWeekend />} />
