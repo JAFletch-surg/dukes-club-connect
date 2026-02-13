@@ -249,6 +249,80 @@ const CommitteeCard = ({
   );
 };
 
+type RegionalRep = {
+  region: string;
+  name: string;
+  image?: string;
+};
+
+const regionalReps: RegionalRep[] = [
+  { region: "Mersey", name: "TBC" },
+  { region: "Wessex", name: "TBC" },
+  { region: "North East Thames", name: "TBC" },
+  { region: "North West", name: "TBC" },
+  { region: "Yorkshire", name: "TBC" },
+  { region: "South West", name: "TBC" },
+  { region: "South Wales", name: "TBC" },
+  { region: "Scotland", name: "TBC" },
+  { region: "Republic of Ireland", name: "TBC" },
+  { region: "East Anglia", name: "TBC" },
+  { region: "SE Thames", name: "TBC" },
+  { region: "Oxford", name: "TBC" },
+  { region: "Northern", name: "TBC" },
+  { region: "North West Thames", name: "TBC" },
+  { region: "West Midlands", name: "TBC" },
+  { region: "North Wales", name: "TBC" },
+  { region: "East Midlands", name: "TBC" },
+  { region: "Northern Ireland", name: "TBC" },
+];
+
+const RegionalRepCard = ({
+  rep,
+  index,
+}: {
+  rep: RegionalRep;
+  index: number;
+}) => {
+  const { ref, isVisible } = useScrollAnimation(0.1);
+
+  return (
+    <div
+      ref={ref}
+      className={cn(
+        "group relative flex items-center gap-4 rounded-lg border-2 border-navy-foreground overflow-hidden bg-navy p-4 transition-all duration-700 ease-out hover:shadow-lg hover:-translate-y-1",
+        isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
+      )}
+      style={{ transitionDelay: `${(index % 3) * 100}ms` }}
+    >
+      {/* Background image */}
+      <img
+        src={cardBg}
+        alt=""
+        aria-hidden="true"
+        className="absolute inset-0 w-full h-full object-cover opacity-[0.12] pointer-events-none select-none"
+      />
+      <div className="absolute inset-0 bg-gradient-to-t from-navy via-navy/80 to-transparent pointer-events-none" />
+
+      {/* Headshot */}
+      <div className="relative z-10 w-14 h-14 shrink-0 rounded-full bg-navy-foreground/10 flex items-center justify-center overflow-hidden transition-transform duration-300 group-hover:scale-110">
+        {rep.image ? (
+          <img src={rep.image} alt={rep.name} className="w-full h-full object-cover" />
+        ) : (
+          <User className="text-gold/60" size={24} />
+        )}
+      </div>
+
+      {/* Text */}
+      <div className="relative z-10 text-left">
+        <h3 className="text-sm font-sans font-semibold text-navy-foreground leading-tight">
+          {rep.region}
+        </h3>
+        <p className="text-xs text-navy-foreground/60 mt-0.5">{rep.name}</p>
+      </div>
+    </div>
+  );
+};
+
 const AboutPage = () => {
   return (
     <div className="min-h-screen bg-background">
@@ -318,6 +392,29 @@ const AboutPage = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {committeeMembers.map((member, i) => (
               <CommitteeCard key={member.role} member={member} index={i} />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Regional Representatives */}
+      <section className="bg-navy py-20">
+        <div className="container mx-auto px-4">
+          <AnimatedSection className="text-center mb-12">
+            <p className="text-gold font-semibold text-sm tracking-widest uppercase mb-3">
+              Across the UK & Ireland
+            </p>
+            <h2 className="text-3xl md:text-4xl font-sans font-bold text-navy-foreground">
+              Regional Representatives
+            </h2>
+            <p className="mt-4 text-navy-foreground/80 max-w-2xl mx-auto">
+              Our regional reps ensure trainees across every region have a voice and access to local support and opportunities.
+            </p>
+          </AnimatedSection>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {regionalReps.map((rep, i) => (
+              <RegionalRepCard key={rep.region} rep={rep} index={i} />
             ))}
           </div>
         </div>
