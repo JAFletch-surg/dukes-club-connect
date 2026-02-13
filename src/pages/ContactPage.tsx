@@ -93,16 +93,16 @@ const ContactPage = () => {
             {/* Left - Info */}
             <div className="lg:col-span-2">
               <AnimatedSection>
-                <div className="mb-10">
+                <div className="flex justify-center mb-10">
                   <img
                     src={logoContact}
                     alt="Dukes' Club"
-                    className="h-20 mb-8"
+                    className="h-32"
                   />
-                  <p className="text-foreground/70 leading-relaxed mb-8">
-                    The Dukes' Club is the national trainee association for colorectal surgery in the United Kingdom. Whether you're a current member or considering joining, we're here to help.
-                  </p>
                 </div>
+                <p className="text-foreground/70 leading-relaxed mb-8">
+                  The Dukes' Club is the national trainee association for colorectal surgery in the United Kingdom. Whether you're a current member or considering joining, we're here to help.
+                </p>
 
                 <div className="space-y-6">
                   <div className="flex items-start gap-4">
