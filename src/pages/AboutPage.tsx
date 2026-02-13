@@ -282,7 +282,7 @@ const AboutPage = () => {
       </section>
 
       {/* Mission Section */}
-      <section className="bg-navy">
+      <section style={{ backgroundColor: "hsl(220, 80%, 55%)" }}>
         <div className="container mx-auto px-4 py-16">
           <AnimatedSection>
             <div className="max-w-3xl mx-auto text-center">
