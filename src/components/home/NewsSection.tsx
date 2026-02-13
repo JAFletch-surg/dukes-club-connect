@@ -5,6 +5,7 @@ import { ArrowRight, Newspaper } from "lucide-react";
 const newsItems = [
   {
     title: "2026 Annual Weekend Registration Now Open",
+    slug: "2026-annual-weekend-registration-now-open",
     tag: "Announcement",
     date: "10 Feb 2026",
     description:
@@ -12,6 +13,7 @@ const newsItems = [
   },
   {
     title: "New FRCS Revision Course Launched",
+    slug: "new-frcs-revision-course-launched",
     tag: "Education",
     date: "28 Jan 2026",
     description:
@@ -19,6 +21,7 @@ const newsItems = [
   },
   {
     title: "Fellowship Applications: Deadline Approaching",
+    slug: "fellowship-applications-deadline-approaching",
     tag: "Careers",
     date: "15 Jan 2026",
     description:
@@ -72,7 +75,7 @@ const NewsSection = () => {
                 </h3>
                 <p className="text-sm text-muted-foreground mb-4">{item.description}</p>
                 <Link
-                  to="/news"
+                  to={`/news/${item.slug}`}
                   className="inline-flex items-center gap-1 text-sm font-medium text-gold hover:text-gold/80 transition-colors"
                 >
                   Read more <ArrowRight size={14} />
