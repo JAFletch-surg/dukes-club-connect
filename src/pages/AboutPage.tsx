@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import logoWhite from "@/assets/logo-white.png";
 import { useScrollAnimation } from "@/hooks/use-scroll-animation";
 import { ChevronDown, MapPin, User } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -180,13 +181,21 @@ const CommitteeCard = ({
     <div
       ref={ref}
       className={cn(
-        "group rounded-lg border-2 border-navy-foreground overflow-hidden bg-navy transition-all duration-700 ease-out hover:shadow-lg hover:-translate-y-1",
+        "group relative rounded-lg border-2 border-navy-foreground overflow-hidden bg-navy transition-all duration-700 ease-out hover:shadow-lg hover:-translate-y-1",
         isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
       )}
       style={{ transitionDelay: `${(index % 3) * 100}ms` }}
     >
+      {/* Faded logo watermark */}
+      <img
+        src={logoWhite}
+        alt=""
+        aria-hidden="true"
+        className="absolute bottom-4 right-4 w-24 h-24 object-contain opacity-[0.06] pointer-events-none select-none"
+      />
+
       {/* Photo / Avatar */}
-      <div className="pt-8 pb-4 flex items-center justify-center">
+      <div className="relative pt-8 pb-4 flex items-center justify-center">
         <div className="w-36 h-36 rounded-full bg-navy-foreground/10 flex items-center justify-center border-2 border-gold/30 overflow-hidden shadow-md">
           {member.image ? (
             <img src={member.image} alt={member.name} className="w-full h-full object-cover" />
