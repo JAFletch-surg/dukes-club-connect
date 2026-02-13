@@ -397,8 +397,7 @@ const AboutPage = () => {
         </div>
       </section>
 
-      {/* Regional Representatives */}
-      <section className="bg-navy py-20">
+      <section style={{ backgroundColor: "hsl(220, 80%, 55%)" }} className="py-20">
         <div className="container mx-auto px-4">
           <AnimatedSection className="text-center mb-12">
             <p className="text-gold font-semibold text-sm tracking-widest uppercase mb-3">
