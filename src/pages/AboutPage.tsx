@@ -191,12 +191,14 @@ const CommitteeCard = ({
         src={cardBg}
         alt=""
         aria-hidden="true"
-        className="absolute inset-0 w-full h-full object-cover opacity-20 pointer-events-none select-none"
+        className="absolute inset-0 w-full h-full object-cover opacity-[0.06] pointer-events-none select-none"
       />
+      {/* Dark gradient overlay at bottom */}
+      <div className="absolute inset-0 bg-gradient-to-t from-navy via-navy/80 to-transparent pointer-events-none" />
 
       {/* Photo / Avatar */}
       <div className="relative pt-8 pb-4 flex items-center justify-center">
-        <div className="w-36 h-36 rounded-full bg-navy-foreground/10 flex items-center justify-center border-4 border-navy-foreground overflow-hidden shadow-md">
+        <div className="w-36 h-36 rounded-full bg-navy-foreground/10 flex items-center justify-center border-4 border-navy-foreground overflow-hidden shadow-md transition-transform duration-300 group-hover:scale-110">
           {member.image ? (
             <img src={member.image} alt={member.name} className="w-full h-full object-cover" />
           ) : (
