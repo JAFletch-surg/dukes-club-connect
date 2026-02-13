@@ -283,13 +283,13 @@ const EventsPage = () => {
 
       {/* Featured Event */}
       {featuredEvent && (
-        <section className="bg-primary">
+        <section style={{ backgroundColor: "hsl(220, 80%, 55%)" }}>
           <div className="container mx-auto px-4 py-12">
             <div className="flex items-center gap-2 mb-6">
-              <Star size={16} className="text-primary-foreground fill-primary-foreground" />
-              <p className="text-primary-foreground font-semibold text-sm tracking-widest uppercase">Featured Event</p>
+              <Star size={16} className="text-white fill-white" />
+              <p className="text-white font-semibold text-sm tracking-widest uppercase">Featured Event</p>
             </div>
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 rounded-lg border-2 border-primary-foreground overflow-hidden bg-navy shadow-xl">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 rounded-lg border-2 border-white overflow-hidden bg-navy shadow-xl">
               <div className="aspect-[4/3] lg:aspect-auto overflow-hidden">
                 <img
                   src={featuredEvent.image}
