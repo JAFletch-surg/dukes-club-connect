@@ -5,6 +5,12 @@ import { useScrollAnimation } from "@/hooks/use-scroll-animation";
 import { ChevronDown, MapPin, User } from "lucide-react";
 import { cn } from "@/lib/utils";
 
+import jasonImg from "@/assets/committee/jason.png";
+import charlotteImg from "@/assets/committee/charlotte.png";
+import joshuaImg from "@/assets/committee/joshua.png";
+import badgeImg from "@/assets/committee/badge.png";
+import susannaImg from "@/assets/committee/susanna.png";
+
 type ExecRole =
   | "President"
   | "Vice-President"
@@ -26,6 +32,7 @@ type CommitteeMember = {
   role: ExecRole;
   placeOfWork: string;
   statement: string;
+  image?: string;
 };
 
 const committeeMembers: CommitteeMember[] = [
@@ -33,6 +40,7 @@ const committeeMembers: CommitteeMember[] = [
     name: "Mr James Richardson",
     role: "President",
     placeOfWork: "St Mark's Hospital, London",
+    image: jasonImg,
     statement:
       "It is a privilege to serve as President of the Dukes' Club. Our mission remains to support the next generation of colorectal surgeons through world-class education, training opportunities, and a strong sense of community. I look forward to building on the excellent work of my predecessors and championing initiatives that will shape the future of our specialty.",
   },
@@ -40,6 +48,7 @@ const committeeMembers: CommitteeMember[] = [
     name: "Miss Sarah Thompson",
     role: "Vice-President",
     placeOfWork: "Oxford University Hospitals",
+    image: charlotteImg,
     statement:
       "As Vice-President, I am committed to expanding our educational programme and fostering collaboration between trainees across the UK. The Dukes' Club has been instrumental in my own development, and I am passionate about ensuring every trainee has access to the same opportunities and mentorship that shaped my career.",
   },
@@ -47,6 +56,7 @@ const committeeMembers: CommitteeMember[] = [
     name: "Mr David Clarke",
     role: "Past-President",
     placeOfWork: "Leeds Teaching Hospitals",
+    image: joshuaImg,
     statement:
       "Serving as President was one of the highlights of my career. I remain dedicated to supporting the Club in an advisory capacity, drawing on my experience to guide strategic decisions and ensure continuity of our core values: excellence, collegiality, and innovation in colorectal surgery training.",
   },
@@ -54,6 +64,7 @@ const committeeMembers: CommitteeMember[] = [
     name: "Miss Emily Watson",
     role: "Secretary",
     placeOfWork: "Royal London Hospital",
+    image: badgeImg,
     statement:
       "As Secretary, I ensure the smooth running of all Club operations, from committee meetings to our annual programme of events. I am passionate about transparency and communication, and I work to keep our membership informed and engaged with everything the Dukes' Club has to offer.",
   },
@@ -61,6 +72,7 @@ const committeeMembers: CommitteeMember[] = [
     name: "Mr Andrew Chen",
     role: "Web Master",
     placeOfWork: "University Hospitals Birmingham",
+    image: susannaImg,
     statement:
       "I am responsible for the Club's digital presence, ensuring our website and online resources serve as a valuable hub for trainees. My goal is to make information accessible, streamline membership processes, and leverage technology to enhance the trainee experience.",
   },
@@ -175,8 +187,12 @@ const CommitteeCard = ({
     >
       {/* Avatar area */}
       <div className="bg-navy p-8 flex items-center justify-center">
-        <div className="w-24 h-24 rounded-full bg-navy-foreground/10 flex items-center justify-center border-2 border-gold/30">
-          <User className="text-gold" size={40} />
+        <div className="w-24 h-24 rounded-full bg-navy-foreground/10 flex items-center justify-center border-2 border-gold/30 overflow-hidden">
+          {member.image ? (
+            <img src={member.image} alt={member.name} className="w-full h-full object-cover" />
+          ) : (
+            <User className="text-gold" size={40} />
+          )}
         </div>
       </div>
 
