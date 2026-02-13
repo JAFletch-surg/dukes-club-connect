@@ -12,6 +12,7 @@ import AboutPage from "./pages/AboutPage";
 import EventDetailPage from "./pages/EventDetailPage";
 import ContactPage from "./pages/ContactPage";
 import PostDetailPage from "./pages/PostDetailPage";
+import ScrollToTop from "./components/ScrollToTop";
 
 const queryClient = new QueryClient();
 
@@ -21,6 +22,7 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
+        <ScrollToTop />
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/about" element={<AboutPage />} />
