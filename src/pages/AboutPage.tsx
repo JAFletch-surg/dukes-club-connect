@@ -180,14 +180,14 @@ const CommitteeCard = ({
     <div
       ref={ref}
       className={cn(
-        "group rounded-lg border overflow-hidden bg-card transition-all duration-700 ease-out hover:shadow-lg hover:-translate-y-1",
+        "group rounded-lg border-2 border-navy-foreground overflow-hidden bg-navy transition-all duration-700 ease-out hover:shadow-lg hover:-translate-y-1",
         isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
       )}
       style={{ transitionDelay: `${(index % 3) * 100}ms` }}
     >
       {/* Photo / Avatar */}
       <div className="pt-8 pb-4 flex items-center justify-center">
-        <div className="w-36 h-36 rounded-full bg-muted flex items-center justify-center border-3 border-gold/40 overflow-hidden shadow-md">
+        <div className="w-36 h-36 rounded-full bg-navy-foreground/10 flex items-center justify-center border-2 border-gold/30 overflow-hidden shadow-md">
           {member.image ? (
             <img src={member.image} alt={member.name} className="w-full h-full object-cover" />
           ) : (
@@ -198,13 +198,13 @@ const CommitteeCard = ({
 
       {/* Info */}
       <div className="px-6 pb-6 text-center">
-        <h3 className="text-lg font-sans font-semibold text-card-foreground mb-1">
+        <h3 className="text-lg font-sans font-semibold text-navy-foreground mb-1">
           {member.name}
         </h3>
-        <span className="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-gold/10 text-gold mb-2 inline-block">
+        <span className="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-gold/20 text-gold mb-2 inline-block">
           {member.role}
         </span>
-        <div className="flex items-center justify-center gap-1.5 text-sm text-muted-foreground mb-4">
+        <div className="flex items-center justify-center gap-1.5 text-sm text-navy-foreground/60 mb-4">
           <MapPin size={13} className="text-gold shrink-0" />
           <span>{member.placeOfWork}</span>
         </div>
@@ -229,7 +229,7 @@ const CommitteeCard = ({
             expanded ? "max-h-96 opacity-100 mt-3" : "max-h-0 opacity-0"
           )}
         >
-          <p className="text-sm text-muted-foreground leading-relaxed text-left">
+          <p className="text-sm text-navy-foreground/70 leading-relaxed text-left">
             {member.statement}
           </p>
         </div>
@@ -290,16 +290,16 @@ const AboutPage = () => {
       </section>
 
       {/* Executive Committee */}
-      <section className="bg-background py-20">
+      <section style={{ backgroundColor: "hsl(220, 80%, 55%)" }} className="py-20">
         <div className="container mx-auto px-4">
           <AnimatedSection className="text-center mb-12">
             <p className="text-gold font-semibold text-sm tracking-widest uppercase mb-3">
               Leadership
             </p>
-            <h2 className="text-3xl md:text-4xl font-sans font-bold text-foreground">
+            <h2 className="text-3xl md:text-4xl font-sans font-bold text-navy-foreground">
               Executive Committee
             </h2>
-            <p className="mt-4 text-muted-foreground max-w-2xl mx-auto">
+            <p className="mt-4 text-navy-foreground/80 max-w-2xl mx-auto">
               Meet the dedicated team driving the Dukes' Club forward. Click on any member to read their personal statement.
             </p>
           </AnimatedSection>
