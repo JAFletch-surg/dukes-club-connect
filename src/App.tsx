@@ -10,6 +10,7 @@ import EventsPage from "./pages/EventsPage";
 import NewsPage from "./pages/NewsPage";
 import AboutPage from "./pages/AboutPage";
 import EventDetailPage from "./pages/EventDetailPage";
+import ContactPage from "./pages/ContactPage";
 
 const queryClient = new QueryClient();
 
@@ -27,7 +28,7 @@ const App = () => (
           <Route path="/news" element={<NewsPage />} />
           <Route path="/exams" element={<Exams />} />
           <Route path="/annual-weekend" element={<AnnualWeekend />} />
-          <Route path="/contact" element={<Contact />} />
+          <Route path="/contact" element={<ContactPage />} />
           <Route path="/join" element={<Join />} />
           <Route path="/login" element={<Login />} />
           <Route path="*" element={<NotFound />} />
