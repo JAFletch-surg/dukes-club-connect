@@ -8,6 +8,7 @@ import robotImage from "@/assets/events/robot.png";
 const upcomingEvents = [
   {
     title: "Intestinal Failure & Abdominal Wall Day",
+    slug: "intestinal-failure-abdominal-wall-day",
     tag: "Conference",
     date: "15 Mar 2026",
     location: "Royal College of Surgeons, London",
@@ -18,6 +19,7 @@ const upcomingEvents = [
   },
   {
     title: "ACPGBI 2026: Advanced IBD Surgery Course",
+    slug: "advanced-ibd-surgery-course",
     tag: "Workshop",
     date: "22–23 Apr 2026",
     location: "Birmingham NEC",
@@ -28,6 +30,7 @@ const upcomingEvents = [
   },
   {
     title: "Robotic Cadaveric CME Course",
+    slug: "robotic-cadaveric-cme-course",
     tag: "Workshop",
     date: "10 May 2026",
     location: "Guy's Hospital, London",
@@ -70,7 +73,7 @@ const EventsSection = () => {
               key={event.title}
               className="group rounded-lg border-2 border-navy-foreground overflow-hidden hover:shadow-lg transition-all duration-300 hover:-translate-y-1 bg-navy"
             >
-              <Link to="/events" className="block">
+              <Link to={`/events/${event.slug}`} className="block">
                 <div className="h-24 md:h-auto md:aspect-[4/3] overflow-hidden">
                   <img
                     src={event.image}
@@ -99,7 +102,7 @@ const EventsSection = () => {
                 </div>
                 <p className="text-sm text-navy-foreground/70 mb-4">{event.description}</p>
                 <Link
-                  to="/events"
+                  to={`/events/${event.slug}`}
                   className="inline-flex items-center gap-1 text-sm font-medium text-gold hover:text-gold/80 transition-colors"
                 >
                   Read more <ArrowRight size={14} />
