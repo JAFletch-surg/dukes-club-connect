@@ -35,6 +35,7 @@ const eventTypes = ["Conference", "Workshop", "Webinar", "Course", "Masterclass"
 
 type EventItem = {
   title: string;
+  slug: string;
   eventType: (typeof eventTypes)[number];
   subspecialties: (typeof subspecialties)[number][];
   date: string;
@@ -51,6 +52,7 @@ type EventItem = {
 const allEvents: EventItem[] = [
   {
     title: "Intestinal Failure & Abdominal Wall Day",
+    slug: "intestinal-failure-abdominal-wall-day",
     eventType: "Conference",
     subspecialties: ["Intestinal Failure", "Abdominal Wall"],
     date: "15 Mar 2026",
@@ -65,6 +67,7 @@ const allEvents: EventItem[] = [
   },
   {
     title: "ACPGBI 2026: Advanced IBD Surgery Course",
+    slug: "acpgbi-2026-advanced-ibd-surgery-course",
     eventType: "Workshop",
     subspecialties: ["IBD", "Laparoscopic"],
     date: "22–23 Apr 2026",
@@ -78,6 +81,7 @@ const allEvents: EventItem[] = [
   },
   {
     title: "Robotic Cadaveric CME Course",
+    slug: "robotic-cadaveric-cme-course",
     eventType: "Workshop",
     subspecialties: ["Robotic", "Cancer - Rectal"],
     date: "10 May 2026",
@@ -91,6 +95,7 @@ const allEvents: EventItem[] = [
   },
   {
     title: "Pelvic Floor Masterclass",
+    slug: "pelvic-floor-masterclass",
     eventType: "Masterclass",
     subspecialties: ["Pelvic Floor", "Proctology"],
     date: "18 Jun 2026",
@@ -104,6 +109,7 @@ const allEvents: EventItem[] = [
   },
   {
     title: "Emergency Colorectal Surgery Webinar",
+    slug: "emergency-colorectal-surgery-webinar",
     eventType: "Webinar",
     subspecialties: ["Emergency", "General"],
     date: "5 Jul 2026",
@@ -117,6 +123,7 @@ const allEvents: EventItem[] = [
   },
   {
     title: "TAMIS & Transanal Surgery Course",
+    slug: "tamis-transanal-surgery-course",
     eventType: "Course",
     subspecialties: ["TAMIS", "Cancer - Rectal", "Endoscopy"],
     date: "12 Sep 2026",
@@ -178,7 +185,7 @@ const EventCard = ({ event }: { event: EventItem }) => (
       </div>
       <p className="text-sm text-navy-foreground/70 mb-4 line-clamp-2">{event.description}</p>
       <Link
-        to="/events"
+        to={`/events/${event.slug}`}
         className="inline-flex items-center gap-1 text-sm font-medium text-gold hover:text-gold/80 transition-colors"
       >
         Read more <ArrowRight size={14} />
@@ -331,7 +338,7 @@ const EventsPage = () => {
                 </div>
                 <p className="text-navy-foreground/70 mb-6">{featuredEvent.description}</p>
                 <div>
-                  <Link to="/events">
+                  <Link to={`/events/${featuredEvent.slug}`}>
                     <Button variant="gold" size="lg">
                       Register Now <ArrowRight className="ml-1" size={16} />
                     </Button>
