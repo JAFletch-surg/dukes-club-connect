@@ -1,14 +1,16 @@
 import { Link } from "react-router-dom";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Video, HelpCircle, Calendar, Clock, Play, MapPin, ArrowRight } from "lucide-react";
-import { mockUser, mockStats, mockVideos, mockUpcomingEvents } from "@/data/mockMembersData";
+import { Progress } from "@/components/ui/progress";
+import { Badge } from "@/components/ui/badge";
+import { Video, HelpCircle, Calendar, BarChart3, Play, MapPin, ArrowRight, TrendingUp } from "lucide-react";
+import { mockUser, mockStats, mockVideos, mockUpcomingEvents, mockWeakTopics } from "@/data/mockMembersData";
 
 const statCards = [
   { label: "Videos watched", value: mockStats.videosWatched, icon: Video, color: "text-navy" },
   { label: "Questions attempted", value: `${mockStats.questionsAttempted}/${mockStats.totalQuestions}`, icon: HelpCircle, color: "text-emerald-600" },
   { label: "Events booked", value: mockStats.eventsBooked, icon: Calendar, color: "text-gold" },
-  { label: "CPD hours", value: mockStats.cpdHours, icon: Clock, color: "text-amber-600" },
+  { label: "Exam average", value: `${mockStats.examAverage}%`, icon: BarChart3, color: "text-primary" },
 ];
 
 const MembersDashboard = () => {
@@ -52,7 +54,10 @@ const MembersDashboard = () => {
         <Card className="border">
           <CardContent className="p-5">
             <div className="flex items-center justify-between mb-4">
-              <h2 className="text-lg font-semibold text-foreground">Latest Videos</h2>
+              <div className="flex items-center gap-2">
+                <Video size={18} className="text-muted-foreground" />
+                <h2 className="text-lg font-semibold text-foreground">Latest Videos</h2>
+              </div>
             </div>
             <div className="space-y-3">
               {latestVideos.map((video) => (
@@ -79,7 +84,10 @@ const MembersDashboard = () => {
         <Card className="border">
           <CardContent className="p-5">
             <div className="flex items-center justify-between mb-4">
-              <h2 className="text-lg font-semibold text-foreground">Upcoming Events</h2>
+              <div className="flex items-center gap-2">
+                <Calendar size={18} className="text-muted-foreground" />
+                <h2 className="text-lg font-semibold text-foreground">Upcoming Events</h2>
+              </div>
             </div>
             <div className="space-y-3">
               {upcomingEvents.map((event) => (
@@ -91,7 +99,7 @@ const MembersDashboard = () => {
                   <div className="w-11 h-11 rounded-md bg-gold/10 flex items-center justify-center shrink-0">
                     <Calendar size={16} className="text-gold" />
                   </div>
-                  <div className="min-w-0">
+                  <div className="min-w-0 flex-1">
                     <p className="text-sm font-medium text-foreground">{event.title}</p>
                     <div className="flex items-center gap-2 text-xs text-muted-foreground mt-0.5">
                       <span>{new Date(event.date).toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" })}</span>
@@ -101,6 +109,11 @@ const MembersDashboard = () => {
                         {event.location.split(",")[0]}
                       </span>
                     </div>
+                    {event.memberPrice && (
+                      <Badge variant="outline" className="mt-1 text-[10px] text-emerald-600 border-emerald-600/30">
+                        Member price: {event.memberPrice}
+                      </Badge>
+                    )}
                   </div>
                 </Link>
               ))}
@@ -113,6 +126,40 @@ const MembersDashboard = () => {
           </CardContent>
         </Card>
       </div>
+
+      {/* Weak Topics */}
+      <Card className="border">
+        <CardContent className="p-5">
+          <div className="flex items-center justify-between mb-4">
+            <div className="flex items-center gap-2">
+              <TrendingUp size={18} className="text-muted-foreground" />
+              <h2 className="text-lg font-semibold text-foreground">Your Weak Topics</h2>
+            </div>
+          </div>
+          <div className="grid sm:grid-cols-2 gap-4">
+            {mockWeakTopics.map((item) => (
+              <div key={item.topic} className="space-y-2">
+                <div className="flex items-center justify-between">
+                  <span className="text-sm font-medium text-foreground">{item.topic}</span>
+                  <span className={`text-sm font-bold ${item.percentage < 50 ? "text-destructive" : "text-gold"}`}>
+                    {item.percentage}%
+                  </span>
+                </div>
+                <Progress
+                  value={item.percentage}
+                  className={`h-2 ${item.percentage < 50 ? "[&>div]:bg-destructive" : "[&>div]:bg-gold"}`}
+                />
+                <Link
+                  to="/members/questions"
+                  className="text-xs text-primary font-medium hover:underline inline-block"
+                >
+                  Practice Now →
+                </Link>
+              </div>
+            ))}
+          </div>
+        </CardContent>
+      </Card>
     </div>
   );
 };
