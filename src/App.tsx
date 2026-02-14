@@ -17,6 +17,17 @@ import RegisterPage from "./pages/RegisterPage";
 import ForgotPasswordPage from "./pages/ForgotPasswordPage";
 import ScrollToTop from "./components/ScrollToTop";
 
+// Members Dashboard
+import MembersLayout from "./components/members/MembersLayout";
+import MembersDashboard from "./pages/members/MembersDashboard";
+import VideoArchive from "./pages/members/VideoArchive";
+import FRCSResources from "./pages/members/FRCSResources";
+import QuestionBank from "./pages/members/QuestionBank";
+import FellowshipsPage from "./pages/members/FellowshipsPage";
+import MemberDirectory from "./pages/members/MemberDirectory";
+import MemberProfile from "./pages/members/MemberProfile";
+import { LiveWebinars, Podcasts } from "./pages/members/PlaceholderMemberPages";
+
 const queryClient = new QueryClient();
 
 const App = () => (
@@ -40,6 +51,20 @@ const App = () => (
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/forgot-password" element={<ForgotPasswordPage />} />
+
+          {/* Members Dashboard */}
+          <Route path="/members" element={<MembersLayout />}>
+            <Route index element={<MembersDashboard />} />
+            <Route path="videos" element={<VideoArchive />} />
+            <Route path="webinars" element={<LiveWebinars />} />
+            <Route path="podcasts" element={<Podcasts />} />
+            <Route path="frcs" element={<FRCSResources />} />
+            <Route path="questions" element={<QuestionBank />} />
+            <Route path="fellowships" element={<FellowshipsPage />} />
+            <Route path="directory" element={<MemberDirectory />} />
+            <Route path="profile" element={<MemberProfile />} />
+          </Route>
+
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
