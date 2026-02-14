@@ -57,6 +57,7 @@ const RegisterPage = () => {
     email: "",
     password: "",
     confirmPassword: "",
+    acpgbiNumber: "",
     region: "",
     trainingStage: "",
   });
@@ -242,6 +243,19 @@ const RegisterPage = () => {
                     autoComplete="new-password"
                     required
                   />
+                </div>
+
+                <div className="space-y-2">
+                  <Label htmlFor="acpgbi-number">ACPGBI membership number</Label>
+                  <Input
+                    id="acpgbi-number"
+                    placeholder="Optional"
+                    value={formData.acpgbiNumber}
+                    onChange={(e) => updateField("acpgbiNumber", e.target.value)}
+                  />
+                  <p className="text-xs text-muted-foreground">
+                    If you're an ACPGBI member, enter your number for automatic Member access
+                  </p>
                 </div>
 
                 <div className="grid grid-cols-2 gap-3">
