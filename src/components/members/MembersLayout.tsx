@@ -5,7 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import {
   Home, Video, Play, Mic, BookOpen, FileText, Globe, Users,
-  Settings, ArrowLeft, LogOut, Menu, X, Search, ShieldCheck, UserCog, BarChart3, Megaphone,
+  Settings, ArrowLeft, LogOut, Menu, X, Search, ShieldCheck, ExternalLink,
 } from "lucide-react";
 import logoWhite from "@/assets/logo-white.png";
 import { mockUser } from "@/data/mockMembersData";
@@ -43,10 +43,7 @@ const navSections = [
   {
     label: "ADMIN",
     items: [
-      { title: "User Management", path: "/members/admin/users", icon: UserCog },
-      { title: "Content Manager", path: "/members/admin/content", icon: Megaphone },
-      { title: "Analytics", path: "/members/admin/analytics", icon: BarChart3 },
-      { title: "Role Management", path: "/members/admin/roles", icon: ShieldCheck },
+      { title: "CMS / Admin Panel", path: "#admin", icon: ShieldCheck, external: true },
     ],
   },
 ];
@@ -80,17 +77,37 @@ const MembersLayout = () => {
             </p>
             <div className="space-y-0.5">
               {section.items.map((item) => {
-                const active = isActive(item.path, (item as any).end);
+                const isExternal = (item as any).external;
+                const active = !isExternal && isActive(item.path, (item as any).end);
+                const className = `flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors ${
+                  active
+                    ? "text-gold bg-navy-foreground/5 border-l-[3px] border-gold -ml-px"
+                    : "text-navy-foreground/70 hover:text-navy-foreground hover:bg-navy-foreground/5"
+                }`;
+
+                if (isExternal) {
+                  return (
+                    <a
+                      key={item.path}
+                      href={item.path}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={() => setSidebarOpen(false)}
+                      className={className}
+                    >
+                      <item.icon size={18} />
+                      <span>{item.title}</span>
+                      <ExternalLink size={12} className="ml-auto text-navy-foreground/40" />
+                    </a>
+                  );
+                }
+
                 return (
                   <Link
                     key={item.path}
                     to={item.path}
                     onClick={() => setSidebarOpen(false)}
-                    className={`flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors ${
-                      active
-                        ? "text-gold bg-navy-foreground/5 border-l-[3px] border-gold -ml-px"
-                        : "text-navy-foreground/70 hover:text-navy-foreground hover:bg-navy-foreground/5"
-                    }`}
+                    className={className}
                   >
                     <item.icon size={18} />
                     <span>{item.title}</span>
