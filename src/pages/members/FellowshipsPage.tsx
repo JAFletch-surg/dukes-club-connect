@@ -4,7 +4,7 @@ import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
-import { MapPin, Clock, Search, Award, Building2, Users, Quote, X, BookOpen } from "lucide-react";
+import { MapPin, Clock, Search, Award, Building2, Users, Quote, X, BookOpen, Map, Navigation } from "lucide-react";
 import { mockFellowships } from "@/data/mockMembersData";
 
 type Fellowship = typeof mockFellowships[0];
@@ -14,10 +14,12 @@ const durationOptions = ["All", "6 months", "12 months"] as const;
 
 const FellowshipsPage = () => {
   const [search, setSearch] = useState("");
+  const [distanceSearch, setDistanceSearch] = useState("");
   const [typeFilter, setTypeFilter] = useState<"All" | "UK" | "International">("All");
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
   const [durationFilter, setDurationFilter] = useState<string>("All");
   const [selected, setSelected] = useState<Fellowship | null>(null);
+  const [showMap, setShowMap] = useState(true);
 
   const toggleTag = (tag: string) =>
     setSelectedTags((p) => (p.includes(tag) ? p.filter((t) => t !== tag) : [...p, tag]));
@@ -96,6 +98,60 @@ const FellowshipsPage = () => {
           )}
         </div>
       </div>
+
+      {/* Distance Search */}
+      <div className="flex flex-col sm:flex-row gap-3 items-start">
+        <div className="relative flex-1 max-w-md">
+          <Navigation size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
+          <Input
+            placeholder="Search by distance from address (e.g. Manchester M1 1AA)..."
+            value={distanceSearch}
+            onChange={(e) => setDistanceSearch(e.target.value)}
+            className="pl-9"
+          />
+        </div>
+        <Button
+          variant="outline"
+          size="sm"
+          className="shrink-0"
+          onClick={() => setShowMap(!showMap)}
+        >
+          <Map size={14} className="mr-1.5" /> {showMap ? "Hide Map" : "Show Map"}
+        </Button>
+      </div>
+
+      {/* Map Placeholder */}
+      {showMap && (
+        <Card className="border overflow-hidden">
+          <div className="relative w-full h-64 sm:h-80 bg-navy/5 flex flex-col items-center justify-center gap-3">
+            {/* Decorative dots representing fellowship locations */}
+            <div className="absolute inset-0 opacity-20">
+              <div className="absolute top-[30%] left-[35%] w-3 h-3 rounded-full bg-primary animate-pulse" />
+              <div className="absolute top-[25%] left-[55%] w-3 h-3 rounded-full bg-gold animate-pulse" style={{ animationDelay: "0.5s" }} />
+              <div className="absolute top-[45%] left-[42%] w-3 h-3 rounded-full bg-primary animate-pulse" style={{ animationDelay: "1s" }} />
+              <div className="absolute top-[60%] left-[48%] w-3 h-3 rounded-full bg-gold animate-pulse" style={{ animationDelay: "0.3s" }} />
+              <div className="absolute top-[35%] left-[65%] w-3 h-3 rounded-full bg-primary animate-pulse" style={{ animationDelay: "0.8s" }} />
+              <div className="absolute top-[50%] left-[30%] w-3 h-3 rounded-full bg-gold animate-pulse" style={{ animationDelay: "1.2s" }} />
+            </div>
+            <Map size={36} className="text-muted-foreground/40" />
+            <div className="text-center z-10">
+              <p className="text-sm font-semibold text-muted-foreground">Interactive Map Coming Soon</p>
+              <p className="text-xs text-muted-foreground/60 mt-1 max-w-xs">
+                Search fellowships by distance from your location. Powered by Mapbox.
+              </p>
+            </div>
+            <div className="flex gap-4 text-[11px] text-muted-foreground/50 z-10">
+              <span className="flex items-center gap-1"><span className="w-2.5 h-2.5 rounded-full bg-primary/40" /> UK</span>
+              <span className="flex items-center gap-1"><span className="w-2.5 h-2.5 rounded-full bg-gold/40" /> International</span>
+            </div>
+            {distanceSearch && (
+              <Badge variant="outline" className="z-10 text-xs mt-1">
+                <Navigation size={10} className="mr-1" /> Searching near: {distanceSearch}
+              </Badge>
+            )}
+          </div>
+        </Card>
+      )}
 
       {/* Cards */}
       <div className="grid sm:grid-cols-2 gap-4">
