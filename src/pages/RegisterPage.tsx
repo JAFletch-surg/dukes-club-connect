@@ -16,10 +16,12 @@ const isApprovedDomain = (email: string): boolean => {
 };
 
 const trainingStages = [
+  "Medical Student",
   "Foundation Year",
   "Core Surgical Training",
   "ST3", "ST4", "ST5", "ST6", "ST7", "ST8",
   "Post-CCT Fellow",
+  "SAS Doctor",
   "Consultant",
   "Other",
 ];
