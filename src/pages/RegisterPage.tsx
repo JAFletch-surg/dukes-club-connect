@@ -24,7 +24,12 @@ const isApprovedDomain = (email: string): boolean => {
 const trainingStages = [
   "Foundation Year",
   "Core Surgical Training",
-  "Specialty Registrar (ST3-ST8)",
+  "ST3",
+  "ST4",
+  "ST5",
+  "ST6",
+  "ST7",
+  "ST8",
   "Post-CCT Fellow",
   "Consultant",
   "Other",
