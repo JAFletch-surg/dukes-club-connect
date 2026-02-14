@@ -352,162 +352,154 @@ const EventsPage = () => {
         </section>
       )}
 
-      {/* Filters & Search */}
-      <section className="bg-navy border-t border-navy-foreground/10 sticky top-16 z-40">
-        <div className="container mx-auto px-4 py-4">
-          {/* Search + Sort + Filter Toggle */}
-          <div className="flex flex-col sm:flex-row gap-3 items-stretch sm:items-center">
-            <div className="relative flex-1">
-              <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-navy-foreground/40" />
-              <Input
-                placeholder="Search events..."
-                value={search}
-                onChange={(e) => { setSearch(e.target.value); setPage(1); }}
-                className="pl-9 pt-3 pb-1 bg-navy-foreground/10 border-navy-foreground/20 text-navy-foreground placeholder:text-navy-foreground/40 focus:border-gold/50 focus:ring-gold/20"
-              />
-            </div>
-            <Select value={sortBy} onValueChange={(v) => setSortBy(v as SortOption)}>
-              <SelectTrigger className="w-full sm:w-48 bg-navy-foreground/10 border-navy-foreground/20 text-navy-foreground">
-                <SelectValue placeholder="Sort by" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="date">Date (soonest)</SelectItem>
-                <SelectItem value="price">Price (lowest)</SelectItem>
-                <SelectItem value="dateAdded">Recently added</SelectItem>
-              </SelectContent>
-            </Select>
-            <Button
-              variant="hero"
-              size="default"
-              onClick={() => setFiltersOpen(!filtersOpen)}
-              className="gap-2"
-            >
-              <SlidersHorizontal size={16} />
-              Filters
-              {activeFilterCount > 0 && (
-                <span className="bg-gold text-gold-foreground text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">
-                  {activeFilterCount}
-                </span>
-              )}
-              <ChevronDown size={14} className={`transition-transform ${filtersOpen ? "rotate-180" : ""}`} />
-            </Button>
-          </div>
-
-          {/* Collapsible Filter Panel */}
-          <Collapsible open={filtersOpen} onOpenChange={setFiltersOpen}>
-            <CollapsibleContent className="pt-4 pb-2 space-y-4 animate-accordion-down">
-              {/* Event Type Tags */}
-              <div>
-                <p className="text-xs font-semibold text-navy-foreground/50 uppercase tracking-wider mb-2">Event Type</p>
-                <div className="flex flex-wrap gap-2">
-                  {eventTypes.map((type) => (
-                    <button
-                      key={type}
-                      onClick={() => toggleFilter(type, selectedEventTypes, setSelectedEventTypes)}
-                      className={`px-3 py-1.5 rounded-full text-xs font-semibold border transition-all duration-200 ${
-                        selectedEventTypes.includes(type)
-                          ? "bg-gold text-gold-foreground border-gold shadow-sm"
-                          : "bg-navy-foreground/5 text-navy-foreground/60 border-navy-foreground/15 hover:border-gold/40 hover:text-navy-foreground/80"
-                      }`}
-                    >
-                      {type}
-                    </button>
-                  ))}
-                </div>
-              </div>
-
-              {/* Subspecialty Tags */}
-              <div>
-                <p className="text-xs font-semibold text-navy-foreground/50 uppercase tracking-wider mb-2">Subspecialty</p>
-                <div className="flex flex-wrap gap-2">
-                  {subspecialties.map((sub) => (
-                    <button
-                      key={sub}
-                      onClick={() => toggleFilter(sub, selectedSubspecialties, setSelectedSubspecialties)}
-                      className={`px-3 py-1.5 rounded-full text-xs font-semibold border transition-all duration-200 ${
-                        selectedSubspecialties.includes(sub)
-                          ? "bg-gold text-gold-foreground border-gold shadow-sm"
-                          : "bg-navy-foreground/5 text-navy-foreground/60 border-navy-foreground/15 hover:border-gold/40 hover:text-navy-foreground/80"
-                      }`}
-                    >
-                      {sub}
-                    </button>
-                  ))}
-                </div>
-              </div>
-
-              {hasActiveFilters && (
-                <button
-                  onClick={clearFilters}
-                  className="inline-flex items-center gap-1.5 text-sm text-gold hover:text-gold/80 transition-colors font-medium"
-                >
-                  <X size={14} /> Clear all filters
-                </button>
-              )}
-            </CollapsibleContent>
-          </Collapsible>
-        </div>
-      </section>
-
-      {/* Events Grid */}
-      <section className="py-16 bg-navy">
+      {/* Two-column layout: Sidebar filters + Events grid */}
+      <section className="bg-navy py-10">
         <div className="container mx-auto px-4">
-          {/* Results count */}
-          <p className="text-sm text-navy-foreground/50 mb-6">
-            Showing {paginatedEvents.length} of {filteredEvents.length} event{filteredEvents.length !== 1 ? "s" : ""}
-          </p>
+          <div className="flex flex-col lg:flex-row gap-8">
 
-          {filteredEvents.length === 0 ? (
-            <div className="text-center py-20">
-              <p className="text-navy-foreground/60 text-lg">No events match your filters.</p>
-              <button onClick={clearFilters} className="mt-4 text-gold hover:text-gold/80 text-sm font-medium">
-                Clear filters
-              </button>
-            </div>
-          ) : (
-            <>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {paginatedEvents.map((event) => (
-                  <EventCard key={event.title} event={event} />
-                ))}
-              </div>
-
-              {/* Pagination */}
-              {totalPages > 1 && (
-                <div className="flex items-center justify-center gap-2 mt-12">
-                  <Button
-                    variant="hero"
-                    size="sm"
-                    onClick={() => setPage((p) => Math.max(1, p - 1))}
-                    disabled={page === 1}
-                  >
-                    Previous
-                  </Button>
-                  {Array.from({ length: totalPages }, (_, i) => i + 1).map((p) => (
-                    <button
-                      key={p}
-                      onClick={() => setPage(p)}
-                      className={`w-9 h-9 rounded-md text-sm font-medium transition-colors ${
-                        p === page
-                          ? "bg-gold text-gold-foreground"
-                          : "text-navy-foreground/60 hover:text-navy-foreground"
-                      }`}
-                    >
-                      {p}
-                    </button>
-                  ))}
-                  <Button
-                    variant="hero"
-                    size="sm"
-                    onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
-                    disabled={page === totalPages}
-                  >
-                    Next
-                  </Button>
+            {/* Left Sidebar - Search & Filters */}
+            <aside className="w-full lg:w-72 xl:w-80 shrink-0">
+              <div className="lg:sticky lg:top-24 space-y-6">
+                {/* Search */}
+                <div>
+                  <p className="text-xs font-semibold text-navy-foreground/50 uppercase tracking-wider mb-2">Search</p>
+                  <div className="relative">
+                    <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-navy-foreground/40" />
+                    <Input
+                      placeholder="Search events..."
+                      value={search}
+                      onChange={(e) => { setSearch(e.target.value); setPage(1); }}
+                      className="pl-9 pt-3 pb-1 bg-navy-foreground/10 border-navy-foreground/20 text-navy-foreground placeholder:text-navy-foreground/40 focus:border-gold/50 focus:ring-gold/20"
+                    />
+                  </div>
                 </div>
+
+                {/* Sort */}
+                <div>
+                  <p className="text-xs font-semibold text-navy-foreground/50 uppercase tracking-wider mb-2">Sort by</p>
+                  <Select value={sortBy} onValueChange={(v) => setSortBy(v as SortOption)}>
+                    <SelectTrigger className="w-full bg-navy-foreground/10 border-navy-foreground/20 text-navy-foreground">
+                      <SelectValue placeholder="Sort by" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="date">Date (soonest)</SelectItem>
+                      <SelectItem value="price">Price (lowest)</SelectItem>
+                      <SelectItem value="dateAdded">Recently added</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+
+                {/* Event Type */}
+                <div>
+                  <p className="text-xs font-semibold text-navy-foreground/50 uppercase tracking-wider mb-2">Event Type</p>
+                  <div className="flex flex-wrap gap-1.5">
+                    {eventTypes.map((type) => (
+                      <button
+                        key={type}
+                        onClick={() => toggleFilter(type, selectedEventTypes, setSelectedEventTypes)}
+                        className={`px-2.5 py-1 rounded-full text-xs font-semibold border transition-all duration-200 ${
+                          selectedEventTypes.includes(type)
+                            ? "bg-gold text-gold-foreground border-gold shadow-sm"
+                            : "bg-navy-foreground/5 text-navy-foreground/60 border-navy-foreground/15 hover:border-gold/40 hover:text-navy-foreground/80"
+                        }`}
+                      >
+                        {type}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Subspecialty */}
+                <div>
+                  <p className="text-xs font-semibold text-navy-foreground/50 uppercase tracking-wider mb-2">Subspecialty</p>
+                  <div className="flex flex-wrap gap-1.5">
+                    {subspecialties.map((sub) => (
+                      <button
+                        key={sub}
+                        onClick={() => toggleFilter(sub, selectedSubspecialties, setSelectedSubspecialties)}
+                        className={`px-2.5 py-1 rounded-full text-xs font-semibold border transition-all duration-200 ${
+                          selectedSubspecialties.includes(sub)
+                            ? "bg-gold text-gold-foreground border-gold shadow-sm"
+                            : "bg-navy-foreground/5 text-navy-foreground/60 border-navy-foreground/15 hover:border-gold/40 hover:text-navy-foreground/80"
+                        }`}
+                      >
+                        {sub}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Clear Filters */}
+                {hasActiveFilters && (
+                  <button
+                    onClick={clearFilters}
+                    className="inline-flex items-center gap-1.5 text-sm text-gold hover:text-gold/80 transition-colors font-medium"
+                  >
+                    <X size={14} /> Clear all filters
+                  </button>
+                )}
+              </div>
+            </aside>
+
+            {/* Right Content - Events Grid */}
+            <div className="flex-1 min-w-0">
+              <p className="text-sm text-navy-foreground/50 mb-6">
+                Showing {paginatedEvents.length} of {filteredEvents.length} event{filteredEvents.length !== 1 ? "s" : ""}
+              </p>
+
+              {filteredEvents.length === 0 ? (
+                <div className="text-center py-20">
+                  <p className="text-navy-foreground/60 text-lg">No events match your filters.</p>
+                  <button onClick={clearFilters} className="mt-4 text-gold hover:text-gold/80 text-sm font-medium">
+                    Clear filters
+                  </button>
+                </div>
+              ) : (
+                <>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    {paginatedEvents.map((event) => (
+                      <EventCard key={event.title} event={event} />
+                    ))}
+                  </div>
+
+                  {totalPages > 1 && (
+                    <div className="flex items-center justify-center gap-2 mt-12">
+                      <Button
+                        variant="hero"
+                        size="sm"
+                        onClick={() => setPage((p) => Math.max(1, p - 1))}
+                        disabled={page === 1}
+                      >
+                        Previous
+                      </Button>
+                      {Array.from({ length: totalPages }, (_, i) => i + 1).map((p) => (
+                        <button
+                          key={p}
+                          onClick={() => setPage(p)}
+                          className={`w-9 h-9 rounded-md text-sm font-medium transition-colors ${
+                            p === page
+                              ? "bg-gold text-gold-foreground"
+                              : "text-navy-foreground/60 hover:text-navy-foreground"
+                          }`}
+                        >
+                          {p}
+                        </button>
+                      ))}
+                      <Button
+                        variant="hero"
+                        size="sm"
+                        onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
+                        disabled={page === totalPages}
+                      >
+                        Next
+                      </Button>
+                    </div>
+                  )}
+                </>
               )}
-            </>
-          )}
+            </div>
+
+          </div>
         </div>
       </section>
 
