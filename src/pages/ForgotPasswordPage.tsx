@@ -35,7 +35,7 @@ const ForgotPasswordPage = () => {
             <Link to="/">
               <img src={logoNavy} alt="The Dukes' Club" className="h-14 mx-auto mb-4" />
             </Link>
-            <h1 className="text-2xl font-serif font-bold text-foreground">Reset Password</h1>
+            <h1 className="text-2xl font-sans font-bold text-foreground">Reset Password</h1>
             <p className="text-sm text-muted-foreground mt-1">
               We'll send you a link to reset your password
             </p>
@@ -46,7 +46,7 @@ const ForgotPasswordPage = () => {
               <>
                 <CardHeader className="text-center pb-2">
                   <Mail className="mx-auto h-12 w-12 text-gold mb-2" />
-                  <CardTitle className="text-xl font-serif">Check Your Email</CardTitle>
+                  <CardTitle className="text-xl font-sans">Check Your Email</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <p className="text-sm text-muted-foreground text-center">

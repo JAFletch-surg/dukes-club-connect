@@ -107,7 +107,7 @@ const RegisterPage = () => {
               ) : (
                 <Clock className="mx-auto h-12 w-12 text-gold mb-2" />
               )}
-              <CardTitle className="text-xl font-serif">
+              <CardTitle className="text-xl font-sans">
                 {approvalType === "auto" ? "Account Created!" : "Registration Received"}
               </CardTitle>
             </CardHeader>
@@ -142,7 +142,7 @@ const RegisterPage = () => {
             <Link to="/">
               <img src={logoNavy} alt="The Dukes' Club" className="h-14 mx-auto mb-4" />
             </Link>
-            <h1 className="text-2xl font-serif font-bold text-foreground">Create Account</h1>
+            <h1 className="text-2xl font-sans font-bold text-foreground">Create Account</h1>
             <p className="text-sm text-muted-foreground mt-1">
               Join the Dukes' Club community
             </p>

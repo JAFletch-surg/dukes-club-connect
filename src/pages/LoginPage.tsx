@@ -42,7 +42,7 @@ const LoginPage = () => {
             <Link to="/">
               <img src={logoNavy} alt="The Dukes' Club" className="h-14 mx-auto mb-4" />
             </Link>
-            <h1 className="text-2xl font-serif font-bold text-foreground">Member Login</h1>
+            <h1 className="text-2xl font-sans font-bold text-foreground">Member Login</h1>
             <p className="text-sm text-muted-foreground mt-1">
               Access your Dukes' Club account
             </p>
