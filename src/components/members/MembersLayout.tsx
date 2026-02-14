@@ -5,7 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import {
   Home, Video, Play, Mic, BookOpen, FileText, Globe, Users,
-  Settings, ArrowLeft, LogOut, Menu, X, Search,
+  Settings, ArrowLeft, LogOut, Menu, X, Search, ShieldCheck, UserCog, BarChart3, Megaphone,
 } from "lucide-react";
 import logoWhite from "@/assets/logo-white.png";
 import { mockUser } from "@/data/mockMembersData";
@@ -38,6 +38,15 @@ const navSections = [
     label: "ACCOUNT",
     items: [
       { title: "My Profile", path: "/members/profile", icon: Settings },
+    ],
+  },
+  {
+    label: "ADMIN",
+    items: [
+      { title: "User Management", path: "/members/admin/users", icon: UserCog },
+      { title: "Content Manager", path: "/members/admin/content", icon: Megaphone },
+      { title: "Analytics", path: "/members/admin/analytics", icon: BarChart3 },
+      { title: "Role Management", path: "/members/admin/roles", icon: ShieldCheck },
     ],
   },
 ];

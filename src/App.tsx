@@ -27,6 +27,7 @@ import FellowshipsPage from "./pages/members/FellowshipsPage";
 import MemberDirectory from "./pages/members/MemberDirectory";
 import MemberProfile from "./pages/members/MemberProfile";
 import { LiveWebinars, Podcasts } from "./pages/members/PlaceholderMemberPages";
+import { AdminUserManagement, AdminContentManager, AdminAnalytics, AdminRoleManagement } from "./pages/members/AdminPages";
 
 const queryClient = new QueryClient();
 
@@ -63,6 +64,10 @@ const App = () => (
             <Route path="fellowships" element={<FellowshipsPage />} />
             <Route path="directory" element={<MemberDirectory />} />
             <Route path="profile" element={<MemberProfile />} />
+            <Route path="admin/users" element={<AdminUserManagement />} />
+            <Route path="admin/content" element={<AdminContentManager />} />
+            <Route path="admin/analytics" element={<AdminAnalytics />} />
+            <Route path="admin/roles" element={<AdminRoleManagement />} />
           </Route>
 
           <Route path="*" element={<NotFound />} />

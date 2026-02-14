@@ -1,8 +1,16 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Menu, X } from "lucide-react";
+import { Menu, X, LayoutDashboard } from "lucide-react";
 import logoWhite from "@/assets/logo-white.png";
+
+// Simulated auth state — replace with real auth context later
+const useSimulatedAuth = () => {
+  const location = useLocation();
+  // User is "logged in" when they're in the members area or if we want to simulate
+  const isLoggedIn = location.pathname.startsWith("/members");
+  return { isLoggedIn };
+};
 
 const navLinks = [
   { label: "Home", path: "/" },
@@ -17,6 +25,7 @@ const navLinks = [
 const Navbar = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const location = useLocation();
+  const { isLoggedIn } = useSimulatedAuth();
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-navy/95 backdrop-blur-md border-b border-navy-foreground/10">
@@ -40,16 +49,27 @@ const Navbar = () => {
               {link.label}
             </Link>
           ))}
-          <Link to="/login">
-            <Button variant="hero" size="sm" className="ml-2">
-              Login
-            </Button>
-          </Link>
-          <Link to="/join">
-            <Button variant="gold" size="sm">
-              Join
-            </Button>
-          </Link>
+          {isLoggedIn ? (
+            <Link to="/members">
+              <Button variant="gold" size="sm" className="ml-2">
+                <LayoutDashboard size={14} className="mr-1" />
+                My Dashboard
+              </Button>
+            </Link>
+          ) : (
+            <>
+              <Link to="/login">
+                <Button variant="hero" size="sm" className="ml-2">
+                  Login
+                </Button>
+              </Link>
+              <Link to="/join">
+                <Button variant="gold" size="sm">
+                  Join
+                </Button>
+              </Link>
+            </>
+          )}
         </div>
 
         {/* Mobile Toggle */}
@@ -78,16 +98,27 @@ const Navbar = () => {
               {link.label}
             </Link>
           ))}
-          <Link to="/login" onClick={() => setMobileOpen(false)}>
-            <Button variant="hero" size="sm" className="mt-2 w-full">
-              Login
-            </Button>
-          </Link>
-          <Link to="/join" onClick={() => setMobileOpen(false)}>
-            <Button variant="gold" size="sm" className="mt-2 w-full">
-              Join
-            </Button>
-          </Link>
+          {isLoggedIn ? (
+            <Link to="/members" onClick={() => setMobileOpen(false)}>
+              <Button variant="gold" size="sm" className="mt-2 w-full">
+                <LayoutDashboard size={14} className="mr-1" />
+                My Dashboard
+              </Button>
+            </Link>
+          ) : (
+            <>
+              <Link to="/login" onClick={() => setMobileOpen(false)}>
+                <Button variant="hero" size="sm" className="mt-2 w-full">
+                  Login
+                </Button>
+              </Link>
+              <Link to="/join" onClick={() => setMobileOpen(false)}>
+                <Button variant="gold" size="sm" className="mt-2 w-full">
+                  Join
+                </Button>
+              </Link>
+            </>
+          )}
         </div>
       )}
     </nav>
