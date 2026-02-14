@@ -21,3 +21,4 @@ export const AnnualWeekend = () => <PlaceholderPage title="Annual Weekend" />;
 export const Contact = () => <PlaceholderPage title="Contact Us" />;
 export const Join = () => <PlaceholderPage title="Join Dukes' Club" />;
 export const Login = () => <PlaceholderPage title="Member Login" />;
+
