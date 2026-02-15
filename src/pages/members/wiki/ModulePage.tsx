@@ -4,19 +4,27 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger, DialogFooter, DialogClose } from "@/components/ui/dialog";
+import { Label } from "@/components/ui/label";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import {
   BookOpen, AlertCircle, Scissors, ArrowRight, ChevronRight, Bookmark,
+  Plus, FileText,
 } from "lucide-react";
 import {
   getModuleBySlug, getTopicsByModule, wikiArticles, moduleColors, emergencySubgroups,
   WikiTopic,
 } from "@/data/wikiMockData";
+import { moduleIcons } from "@/data/wikiIcons";
 import { cn } from "@/lib/utils";
 
 const ModulePage = () => {
   const { moduleSlug } = useParams<{ moduleSlug: string }>();
   const module = getModuleBySlug(moduleSlug || "");
   const [selectedTopicId, setSelectedTopicId] = useState<string | null>(null);
+  const [showAddArticle, setShowAddArticle] = useState(false);
 
   if (!module) {
     return <div className="p-8 text-center text-muted-foreground">Module not found</div>;
@@ -25,6 +33,7 @@ const ModulePage = () => {
   const topics = getTopicsByModule(module.id);
   const selectedTopic = topics.find(t => t.id === selectedTopicId);
   const color = moduleColors[module.slug] || "#4a5568";
+  const iconSrc = moduleIcons[module.slug];
 
   const isEmergency = module.slug === "emergency-general-surgery";
   const totalArticles = topics.reduce((s, t) => s + t.articleCount, 0);
@@ -45,26 +54,40 @@ const ModulePage = () => {
         <span className="text-foreground font-medium">{module.title}</span>
       </nav>
 
-      {/* Module Header */}
-      <div className="rounded-xl overflow-hidden">
-        <div className="p-5 sm:p-6" style={{ background: `linear-gradient(135deg, ${color}12, ${color}06)` }}>
-          <div className="flex items-start gap-4">
-            <div className="w-12 h-12 rounded-xl flex items-center justify-center shrink-0 shadow-sm" style={{ backgroundColor: `${color}18` }}>
-              <BookOpen size={22} style={{ color }} />
-            </div>
-            <div className="flex-1">
-              <h1 className="text-xl sm:text-2xl font-bold text-foreground">{module.title}</h1>
-              <div className="flex items-center gap-2 mt-1.5 flex-wrap">
-                <Badge variant="outline" className="text-[10px] rounded-full">{module.phase}</Badge>
+      {/* Module Header — enhanced with illustration */}
+      <div className="rounded-2xl overflow-hidden border border-border shadow-sm">
+        <div className="relative p-6 sm:p-8" style={{ background: `linear-gradient(135deg, ${color}15, ${color}05)` }}>
+          {/* Subtle pattern overlay */}
+          <div className="absolute top-0 right-0 w-48 h-48 opacity-[0.04]" style={{ background: `radial-gradient(circle, ${color}, transparent 70%)` }} />
+          
+          <div className="relative flex items-start gap-5">
+            {/* Module icon */}
+            {iconSrc ? (
+              <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl flex items-center justify-center shrink-0 border-2 bg-card shadow-sm" style={{ borderColor: `${color}30` }}>
+                <img src={iconSrc} alt={module.title} className="w-12 h-12 sm:w-14 sm:h-14 object-contain" />
               </div>
-              <p className="text-sm text-muted-foreground mt-2 max-w-2xl">{module.description}</p>
-              <div className="flex items-center gap-4 mt-3 flex-wrap">
+            ) : (
+              <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl flex items-center justify-center shrink-0 shadow-sm" style={{ backgroundColor: `${color}18` }}>
+                <BookOpen size={28} style={{ color }} />
+              </div>
+            )}
+            <div className="flex-1">
+              <div className="flex items-center gap-2 mb-1.5 flex-wrap">
+                <Badge variant="outline" className="text-[10px] rounded-full font-semibold" style={{ borderColor: `${color}40`, color }}>{module.phase}</Badge>
+                {criticalCount > 0 && (
+                  <Badge className="bg-wiki-critical/10 text-wiki-critical text-[10px] rounded-full border-0">{criticalCount} critical conditions</Badge>
+                )}
+              </div>
+              <h1 className="text-xl sm:text-2xl font-bold text-foreground">{module.title}</h1>
+              <p className="text-sm text-muted-foreground mt-1.5 max-w-2xl leading-relaxed">{module.description}</p>
+              
+              {/* Stats row */}
+              <div className="flex items-center gap-3 mt-4 flex-wrap">
                 <div className="flex items-center gap-2 text-xs text-muted-foreground">
-                  <span className="bg-card px-2.5 py-1 rounded-full border border-border">{module.topicCount} topics</span>
-                  {criticalCount > 0 && <span className="bg-wiki-critical-bg text-wiki-critical px-2.5 py-1 rounded-full font-medium">{criticalCount} critical</span>}
-                  <span className="bg-card px-2.5 py-1 rounded-full border border-border">{totalArticles} articles</span>
+                  <span className="bg-card px-3 py-1.5 rounded-full border border-border font-medium shadow-sm">{module.topicCount} topics</span>
+                  <span className="bg-card px-3 py-1.5 rounded-full border border-border font-medium shadow-sm">{totalArticles} articles</span>
                 </div>
-                <div className="flex items-center gap-2 min-w-[140px]">
+                <div className="flex items-center gap-2 min-w-[160px] bg-card px-3 py-1.5 rounded-full border border-border shadow-sm">
                   <Progress value={readPercent} className="h-2 flex-1 rounded-full [&>div]:bg-gold [&>div]:rounded-full" />
                   <span className="text-xs font-bold text-muted-foreground">{readPercent}%</span>
                 </div>
@@ -82,8 +105,8 @@ const ModulePage = () => {
             <div key={gi}>
               {group.subgroup && (
                 <div className="flex items-center gap-2 mb-2.5 mt-2">
-                  <div className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: color }} />
-                  <p className="text-xs font-semibold text-muted-foreground tracking-wider uppercase">{group.subgroup}</p>
+                  <div className="w-2 h-2 rounded-full" style={{ backgroundColor: color }} />
+                  <p className="text-xs font-bold text-muted-foreground tracking-wider uppercase">{group.subgroup}</p>
                   <div className="h-px flex-1 bg-border/50" />
                 </div>
               )}
@@ -175,6 +198,7 @@ const TopicRow = ({ topic, color, isSelected, onSelect, moduleSlug }: { topic: W
 
 const TopicDetail = ({ topic, color, moduleSlug, moduleTitle }: { topic: WikiTopic; color: string; moduleSlug: string; moduleTitle: string }) => {
   const articles = wikiArticles.filter(a => a.topicSlug === topic.slug && a.moduleSlug === moduleSlug);
+  const [showAddDialog, setShowAddDialog] = useState(false);
 
   return (
     <Card className="border rounded-xl overflow-hidden shadow-sm">
@@ -224,7 +248,71 @@ const TopicDetail = ({ topic, color, moduleSlug, moduleTitle }: { topic: WikiTop
         )}
 
         <div>
-          <h4 className="text-xs font-bold text-muted-foreground tracking-wider uppercase mb-2.5">Articles in This Topic</h4>
+          <div className="flex items-center justify-between mb-2.5">
+            <h4 className="text-xs font-bold text-muted-foreground tracking-wider uppercase">Articles in This Topic</h4>
+            <Dialog open={showAddDialog} onOpenChange={setShowAddDialog}>
+              <DialogTrigger asChild>
+                <Button variant="ghost" size="sm" className="h-7 text-[11px] gap-1 text-primary">
+                  <Plus size={12} /> Add Article
+                </Button>
+              </DialogTrigger>
+              <DialogContent className="sm:max-w-lg">
+                <DialogHeader>
+                  <DialogTitle className="text-lg">Add New Article</DialogTitle>
+                  <p className="text-sm text-muted-foreground">Create a new article in <strong>{topic.title}</strong></p>
+                </DialogHeader>
+                <div className="space-y-4 py-4">
+                  <div className="space-y-2">
+                    <Label htmlFor="article-title">Title</Label>
+                    <Input id="article-title" placeholder="e.g. Acute Appendicitis: Diagnosis & Management" />
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="article-excerpt">Excerpt</Label>
+                    <Textarea id="article-excerpt" placeholder="Brief summary for article cards..." rows={2} />
+                  </div>
+                  <div className="grid grid-cols-2 gap-4">
+                    <div className="space-y-2">
+                      <Label>Depth</Label>
+                      <Select>
+                        <SelectTrigger><SelectValue placeholder="Select depth" /></SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="quick">Quick Review (≤5 min)</SelectItem>
+                          <SelectItem value="core">Core Topic (6-15 min)</SelectItem>
+                          <SelectItem value="deep">Deep Dive (15+ min)</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+                    <div className="space-y-2">
+                      <Label>Status</Label>
+                      <Select>
+                        <SelectTrigger><SelectValue placeholder="Select status" /></SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="draft">Draft</SelectItem>
+                          <SelectItem value="published">Published</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+                  </div>
+                  <div className="space-y-2">
+                    <Label>Key Points (one per line)</Label>
+                    <Textarea placeholder="Enter key takeaways, one per line..." rows={4} />
+                  </div>
+                  <div className="space-y-2">
+                    <Label>Tags</Label>
+                    <Input placeholder="e.g. Emergency, Phase 2, Acute Abdomen" />
+                  </div>
+                </div>
+                <DialogFooter>
+                  <DialogClose asChild>
+                    <Button variant="outline">Cancel</Button>
+                  </DialogClose>
+                  <Button onClick={() => setShowAddDialog(false)} className="bg-navy text-navy-foreground hover:bg-navy/90">
+                    <FileText size={14} className="mr-1.5" /> Create Article
+                  </Button>
+                </DialogFooter>
+              </DialogContent>
+            </Dialog>
+          </div>
           {articles.length > 0 ? (
             <div className="space-y-2">
               {articles.map(article => (

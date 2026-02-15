@@ -10,6 +10,7 @@ import {
   ChevronDown, ChevronUp, Clock, Flame, GraduationCap,
 } from "lucide-react";
 import { wikiModules, mockWikiPreferences, mockRecentReads, criticalConditions, moduleColors } from "@/data/wikiMockData";
+import { moduleIcons } from "@/data/wikiIcons";
 import { cn } from "@/lib/utils";
 
 const WikiHome = () => {
@@ -36,7 +37,6 @@ const WikiHome = () => {
           <h1 className="text-xl sm:text-2xl font-bold text-navy-foreground mb-2">Good morning, Alex 👋</h1>
           <p className="text-navy-foreground/70 text-sm max-w-xl">Pick up where you left off, or explore your curriculum modules below.</p>
           
-          {/* Search */}
           <div className="relative mt-5 max-w-2xl">
             <Search size={18} className="absolute left-4 top-1/2 -translate-y-1/2 text-navy-foreground/40" />
             <Input
@@ -54,7 +54,6 @@ const WikiHome = () => {
 
       {/* Smart Entry Cards */}
       <div className="grid md:grid-cols-3 gap-4">
-        {/* Continue Revising */}
         <Card className="group border bg-card hover:shadow-md transition-all duration-300 rounded-xl overflow-hidden">
           <CardContent className="p-0">
             <div className="px-5 pt-4 pb-3 border-b border-border/50 bg-gold/5">
@@ -86,7 +85,6 @@ const WikiHome = () => {
           </CardContent>
         </Card>
 
-        {/* Exam Focus */}
         <Card className="group border bg-card hover:shadow-md transition-all duration-300 rounded-xl overflow-hidden">
           <CardContent className="p-0">
             <div className="px-5 pt-4 pb-3 border-b border-border/50 bg-wiki-critical-bg">
@@ -121,7 +119,6 @@ const WikiHome = () => {
           </CardContent>
         </Card>
 
-        {/* New & Popular */}
         <Card className="group border bg-card hover:shadow-md transition-all duration-300 rounded-xl overflow-hidden">
           <CardContent className="p-0">
             <div className="px-5 pt-4 pb-3 border-b border-border/50 bg-primary/5">
@@ -212,23 +209,30 @@ const WikiHome = () => {
 
 const ModuleCard = ({ module }: { module: typeof wikiModules[0] }) => {
   const color = moduleColors[module.slug] || "#4a5568";
+  const iconSrc = moduleIcons[module.slug];
+
   return (
     <Link to={`/members/wiki/${module.slug}`}>
       <Card className="border hover:shadow-lg transition-all duration-300 group h-full rounded-xl overflow-hidden">
-        {/* Colored top accent */}
         <div className="h-1" style={{ backgroundColor: color }} />
         <CardContent className="p-5">
           <div className="flex items-start gap-3 mb-3">
-            <div className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0 transition-transform duration-300 group-hover:scale-110" style={{ backgroundColor: `${color}12` }}>
-              <BookOpen size={18} style={{ color }} />
-            </div>
+            {iconSrc ? (
+              <div className="w-11 h-11 rounded-xl flex items-center justify-center shrink-0 overflow-hidden transition-transform duration-300 group-hover:scale-110 border border-border/50" style={{ backgroundColor: `${color}08` }}>
+                <img src={iconSrc} alt={module.title} className="w-8 h-8 object-contain" />
+              </div>
+            ) : (
+              <div className="w-11 h-11 rounded-xl flex items-center justify-center shrink-0 transition-transform duration-300 group-hover:scale-110" style={{ backgroundColor: `${color}12` }}>
+                <BookOpen size={18} style={{ color }} />
+              </div>
+            )}
             <div>
               <h3 className="font-bold text-foreground text-sm leading-tight group-hover:text-primary transition-colors">{module.title}</h3>
               <p className="text-[11px] text-muted-foreground mt-0.5">{module.phase}</p>
             </div>
           </div>
           <p className="text-xs text-muted-foreground line-clamp-2 mb-4">{module.description}</p>
-          <div className="flex items-center gap-2 text-[11px] text-muted-foreground mb-3">
+          <div className="flex items-center gap-2 text-[11px] text-muted-foreground mb-3 flex-wrap">
             <span className="bg-muted/50 px-2 py-0.5 rounded-full">{module.topicCount} topics</span>
             {module.criticalCount > 0 && (
               <span className="bg-wiki-critical-bg text-wiki-critical px-2 py-0.5 rounded-full font-medium">{module.criticalCount} critical</span>

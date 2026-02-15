@@ -44,7 +44,7 @@ export interface IndexProcedure {
 }
 
 export interface ContentBlock {
-  type: 'heading' | 'paragraph' | 'list' | 'table' | 'key_point' | 'warning' | 'clinical_pearl' | 'exam_tip' | 'image' | 'expandable' | 'reference';
+  type: 'heading' | 'paragraph' | 'list' | 'table' | 'key_point' | 'warning' | 'clinical_pearl' | 'exam_tip' | 'image' | 'video' | 'image_gallery' | 'expandable' | 'reference';
   level?: number; // for headings: 2, 3, 4
   text?: string;
   items?: string[];
@@ -56,6 +56,7 @@ export interface ContentBlock {
   title?: string; // for expandable
   content?: string; // for expandable
   references?: { number: number; text: string }[];
+  images?: { src: string; caption?: string }[]; // for image_gallery
 }
 
 export interface WikiArticle {
