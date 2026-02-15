@@ -31,7 +31,6 @@ const ArticlePage = () => {
 
   const color = module ? moduleColors[module.slug] || "#4a5568" : "#4a5568";
 
-  // Reading progress
   useEffect(() => {
     const handleScroll = () => {
       if (!contentRef.current) return;
@@ -45,7 +44,6 @@ const ArticlePage = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Extract headings for TOC
   const headings = article?.content.filter(b => b.type === "heading" && (b.level === 2 || b.level === 3)) || [];
 
   if (!article || !module || !topic) {
@@ -62,12 +60,12 @@ const ArticlePage = () => {
   return (
     <div className="max-w-6xl">
       {/* Reading progress bar */}
-      <div className="fixed top-0 left-0 right-0 z-50 h-0.5">
-        <div className="h-full bg-gold transition-all duration-150" style={{ width: `${readProgress}%` }} />
+      <div className="fixed top-0 left-0 right-0 z-50 h-1 bg-muted/30">
+        <div className="h-full bg-gold rounded-r-full transition-all duration-150" style={{ width: `${readProgress}%` }} />
       </div>
 
       {/* Breadcrumb */}
-      <nav className="flex items-center gap-1.5 text-xs text-muted-foreground mb-4 flex-wrap">
+      <nav className="flex items-center gap-1.5 text-xs text-muted-foreground mb-5 flex-wrap">
         <Link to="/members/wiki" className="hover:text-foreground transition-colors">Wiki</Link>
         <ChevronRight size={12} />
         <Link to={`/members/wiki/${module.slug}`} className="hover:text-foreground transition-colors">{module.title}</Link>
@@ -77,53 +75,57 @@ const ArticlePage = () => {
         <span className="text-foreground font-medium truncate max-w-[200px]">{article.title}</span>
       </nav>
 
-      <div className="flex gap-8">
+      <div className="flex gap-10">
         {/* Main Content */}
         <div className="flex-1 min-w-0" ref={contentRef}>
           {/* Article Header */}
-          <div className="mb-6">
-            <div className="flex items-center gap-2 mb-2 flex-wrap">
-              <Badge className={cn("text-[10px] px-2 py-0 border-0", dc.className)}>{dc.label}</Badge>
-              <Badge variant="outline" className="text-[10px]">{module.phase}</Badge>
-              {topic.is_critical && <Badge className="bg-wiki-critical text-card text-[10px] px-2 py-0">CRITICAL</Badge>}
+          <div className="mb-8">
+            <div className="flex items-center gap-2 mb-3 flex-wrap">
+              <Badge className={cn("text-[10px] px-2.5 py-0.5 border-0 rounded-full", dc.className)}>{dc.label}</Badge>
+              <Badge variant="outline" className="text-[10px] rounded-full">{module.phase}</Badge>
+              {topic.is_critical && <Badge className="bg-wiki-critical text-card text-[10px] px-2.5 py-0.5 rounded-full">CRITICAL</Badge>}
             </div>
-            <h1 className="text-2xl font-bold text-foreground mb-2">{article.title}</h1>
+            <h1 className="text-2xl sm:text-3xl font-bold text-foreground mb-4 leading-tight">{article.title}</h1>
             <div className="flex items-center gap-3 text-sm text-muted-foreground flex-wrap">
-              <div className="flex items-center gap-2">
-                <div className="w-7 h-7 rounded-full bg-navy flex items-center justify-center text-navy-foreground text-[10px] font-bold">
+              <div className="flex items-center gap-3">
+                <div className="w-9 h-9 rounded-full bg-navy flex items-center justify-center text-navy-foreground text-xs font-bold shadow-sm">
                   {article.author.name.split(" ").map(n => n[0]).join("")}
                 </div>
                 <div>
-                  <p className="text-sm font-medium text-foreground">{article.author.name}</p>
+                  <p className="text-sm font-semibold text-foreground">{article.author.name}</p>
                   <p className="text-xs text-muted-foreground">{article.author.role}</p>
                 </div>
               </div>
-              <span className="text-xs">·</span>
+              <span className="text-muted-foreground/30">|</span>
               <span className="text-xs">{new Date(article.published_at).toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" })}</span>
-              <span className="text-xs">·</span>
+              <span className="text-muted-foreground/30">·</span>
               <span className="text-xs">{article.estimated_read_minutes} min read</span>
             </div>
-            <div className="flex items-center gap-2 mt-3">
-              <Button variant="ghost" size="sm" className="h-8 text-xs gap-1.5"><Bookmark size={14} /> Bookmark</Button>
-              <Button variant="ghost" size="sm" className="h-8 text-xs gap-1.5"><Share2 size={14} /> Share</Button>
+            <div className="flex items-center gap-2 mt-4">
+              <Button variant="outline" size="sm" className="h-8 text-xs gap-1.5 rounded-full"><Bookmark size={13} /> Bookmark</Button>
+              <Button variant="outline" size="sm" className="h-8 text-xs gap-1.5 rounded-full"><Share2 size={13} /> Share</Button>
             </div>
           </div>
 
           {/* Key Points */}
-          <div className="border-l-4 border-l-gold bg-gold/5 rounded-r-lg p-4 mb-6">
-            <div className="flex items-center gap-2 mb-2">
-              <Star size={16} className="text-gold" />
-              <span className="text-sm font-bold text-foreground">Key Points</span>
+          <Card className="border-l-4 border-l-gold border rounded-xl mb-8 overflow-hidden">
+            <div className="bg-gold/5 px-5 py-4">
+              <div className="flex items-center gap-2 mb-3">
+                <div className="w-7 h-7 rounded-lg bg-gold/15 flex items-center justify-center">
+                  <Star size={14} className="text-gold" />
+                </div>
+                <span className="text-sm font-bold text-foreground">Key Points</span>
+              </div>
+              <ul className="space-y-2">
+                {article.key_points.map((point, i) => (
+                  <li key={i} className="flex items-start gap-2.5 text-sm text-foreground/85 leading-relaxed">
+                    <span className="w-5 h-5 rounded-full bg-gold/15 text-gold flex items-center justify-center text-[10px] font-bold shrink-0 mt-0.5">{i + 1}</span>
+                    <span>{point}</span>
+                  </li>
+                ))}
+              </ul>
             </div>
-            <ul className="space-y-1.5">
-              {article.key_points.map((point, i) => (
-                <li key={i} className="flex items-start gap-2 text-sm text-foreground/85">
-                  <span className="text-gold mt-0.5">•</span>
-                  <span>{point}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
+          </Card>
 
           {/* Full article body */}
           <div className={cn(!showFullArticle && "hidden sm:block")}>
@@ -131,70 +133,73 @@ const ArticlePage = () => {
           </div>
           <div className="sm:hidden">
             {!showFullArticle && (
-              <Button variant="outline" onClick={() => setShowFullArticle(true)} className="w-full mt-4">
+              <Button variant="outline" onClick={() => setShowFullArticle(true)} className="w-full mt-4 rounded-xl">
                 Read full article ↓
               </Button>
             )}
           </div>
 
           {/* Test Your Knowledge */}
-          <Card className="border mt-8">
+          <Card className="border rounded-xl mt-10 overflow-hidden">
+            <div className="bg-primary/5 border-b border-border/50 px-5 py-3">
+              <h3 className="font-bold text-foreground text-sm">🧠 Test Your Knowledge</h3>
+            </div>
             <CardContent className="p-5">
-              <h3 className="font-semibold text-foreground mb-2">Test Your Knowledge</h3>
               <p className="text-sm text-muted-foreground mb-3">8 questions available on this topic</p>
               <Link to="/members/questions">
-                <Button variant="outline" size="sm">Practice on this topic →</Button>
+                <Button variant="outline" size="sm" className="rounded-full">Practice on this topic →</Button>
               </Link>
             </CardContent>
           </Card>
 
           {/* Navigation */}
-          <div className="flex items-center justify-between mt-6 pt-4 border-t border-border">
+          <div className="flex items-center justify-between mt-8 pt-5 border-t border-border">
             {prevArticle ? (
-              <Link to={`/members/wiki/${moduleSlug}/${topicSlug}/${prevArticle.slug}`} className="flex items-center gap-1.5 text-sm text-primary hover:underline">
-                <ArrowLeft size={14} /> {prevArticle.title}
+              <Link to={`/members/wiki/${moduleSlug}/${topicSlug}/${prevArticle.slug}`} className="flex items-center gap-2 text-sm text-primary hover:underline group">
+                <ArrowLeft size={14} className="group-hover:-translate-x-0.5 transition-transform" /> {prevArticle.title}
               </Link>
             ) : <div />}
             {nextArticle ? (
-              <Link to={`/members/wiki/${moduleSlug}/${topicSlug}/${nextArticle.slug}`} className="flex items-center gap-1.5 text-sm text-primary hover:underline">
-                {nextArticle.title} <ArrowRight size={14} />
+              <Link to={`/members/wiki/${moduleSlug}/${topicSlug}/${nextArticle.slug}`} className="flex items-center gap-2 text-sm text-primary hover:underline group">
+                {nextArticle.title} <ArrowRight size={14} className="group-hover:translate-x-0.5 transition-transform" />
               </Link>
             ) : <div />}
           </div>
 
           {/* Feedback */}
-          <div className="flex items-center justify-center gap-4 mt-6 py-4 border-t border-border">
+          <div className="flex items-center justify-center gap-4 mt-8 py-5 bg-muted/20 rounded-xl">
             <span className="text-sm text-muted-foreground">Was this article helpful?</span>
-            <Button variant="ghost" size="sm" className="h-8 gap-1"><ThumbsUp size={14} /></Button>
-            <Button variant="ghost" size="sm" className="h-8 gap-1"><ThumbsDown size={14} /></Button>
+            <Button variant="outline" size="sm" className="h-8 gap-1 rounded-full hover:bg-wiki-read/10 hover:text-wiki-read hover:border-wiki-read/30"><ThumbsUp size={14} /></Button>
+            <Button variant="outline" size="sm" className="h-8 gap-1 rounded-full hover:bg-wiki-critical/10 hover:text-wiki-critical hover:border-wiki-critical/30"><ThumbsDown size={14} /></Button>
           </div>
 
           {/* Author */}
-          <Card className="border mt-4">
-            <CardContent className="p-4 flex items-center gap-3">
-              <div className="w-10 h-10 rounded-full bg-navy flex items-center justify-center text-navy-foreground text-xs font-bold shrink-0">
+          <Card className="border rounded-xl mt-6 overflow-hidden">
+            <CardContent className="p-5 flex items-center gap-4">
+              <div className="w-12 h-12 rounded-full bg-navy flex items-center justify-center text-navy-foreground text-sm font-bold shrink-0 shadow-sm">
                 {article.author.name.split(" ").map(n => n[0]).join("")}
               </div>
               <div>
-                <p className="text-sm font-semibold text-foreground">{article.author.name}</p>
+                <p className="text-sm font-bold text-foreground">{article.author.name}</p>
                 <p className="text-xs text-muted-foreground">{article.author.role}</p>
+                <p className="text-xs text-primary mt-0.5 hover:underline cursor-pointer">More articles by this author</p>
               </div>
             </CardContent>
           </Card>
         </div>
 
         {/* TOC Sidebar (desktop) */}
-        <aside className="hidden lg:block w-[240px] shrink-0">
+        <aside className="hidden lg:block w-[220px] shrink-0">
           <div className="sticky top-16">
-            <p className="text-xs font-semibold text-muted-foreground tracking-wider uppercase mb-3">On this page</p>
-            <nav className="space-y-1">
+            <p className="text-xs font-bold text-muted-foreground tracking-wider uppercase mb-3">On this page</p>
+            <nav className="space-y-0.5 border-l-2 border-border">
               {headings.map((h, i) => (
                 <a
                   key={i}
                   href={`#${h.text?.toLowerCase().replace(/\s+/g, "-")}`}
                   className={cn(
-                    "block text-xs text-muted-foreground hover:text-foreground transition-colors py-1",
-                    h.level === 3 && "pl-3"
+                    "block text-xs text-muted-foreground hover:text-foreground hover:bg-muted/30 transition-all py-1.5 px-3 -ml-[2px] border-l-2 border-transparent hover:border-gold rounded-r-md",
+                    h.level === 3 && "pl-5"
                   )}
                 >
                   {h.text}
@@ -208,23 +213,23 @@ const ArticlePage = () => {
       {/* Mobile TOC */}
       <button
         onClick={() => setShowTOC(!showTOC)}
-        className="lg:hidden fixed bottom-20 right-4 z-40 bg-navy text-navy-foreground rounded-full w-10 h-10 flex items-center justify-center shadow-lg"
+        className="lg:hidden fixed bottom-20 right-4 z-40 bg-navy text-navy-foreground rounded-full w-11 h-11 flex items-center justify-center shadow-lg hover:scale-105 transition-transform"
       >
         <List size={18} />
       </button>
       {showTOC && (
-        <div className="lg:hidden fixed inset-x-0 bottom-0 z-50 bg-card border-t border-border rounded-t-xl shadow-xl max-h-[50vh] overflow-y-auto p-4">
-          <div className="flex items-center justify-between mb-3">
-            <p className="text-sm font-semibold text-foreground">Table of Contents</p>
-            <button onClick={() => setShowTOC(false)} className="text-muted-foreground"><ChevronDown size={18} /></button>
+        <div className="lg:hidden fixed inset-x-0 bottom-0 z-50 bg-card border-t border-border rounded-t-2xl shadow-xl max-h-[50vh] overflow-y-auto p-5">
+          <div className="flex items-center justify-between mb-4">
+            <p className="text-sm font-bold text-foreground">Table of Contents</p>
+            <button onClick={() => setShowTOC(false)} className="text-muted-foreground p-1 hover:bg-muted/30 rounded-lg"><ChevronDown size={18} /></button>
           </div>
-          <nav className="space-y-2">
+          <nav className="space-y-1">
             {headings.map((h, i) => (
               <a
                 key={i}
                 href={`#${h.text?.toLowerCase().replace(/\s+/g, "-")}`}
                 onClick={() => setShowTOC(false)}
-                className={cn("block text-sm text-muted-foreground hover:text-foreground py-1", h.level === 3 && "pl-4")}
+                className={cn("block text-sm text-muted-foreground hover:text-foreground py-1.5 px-3 rounded-lg hover:bg-muted/30 transition-colors", h.level === 3 && "pl-6")}
               >
                 {h.text}
               </a>
@@ -234,12 +239,12 @@ const ArticlePage = () => {
       )}
 
       {/* Mobile bottom bar */}
-      <div className="lg:hidden fixed bottom-0 inset-x-0 bg-card border-t border-border flex items-center justify-around py-2 z-30">
+      <div className="lg:hidden fixed bottom-0 inset-x-0 bg-card/95 backdrop-blur-sm border-t border-border flex items-center justify-around py-2.5 z-30">
         <Button variant="ghost" size="sm" className="text-xs gap-1"><Bookmark size={14} /> Save</Button>
         <Button variant="ghost" size="sm" className="text-xs gap-1"><Share2 size={14} /> Share</Button>
         {nextArticle && (
           <Link to={`/members/wiki/${moduleSlug}/${topicSlug}/${nextArticle.slug}`}>
-            <Button variant="gold" size="sm" className="text-xs gap-1">Next <ArrowRight size={14} /></Button>
+            <Button size="sm" className="text-xs gap-1 bg-gold text-gold-foreground hover:bg-gold/90 rounded-full">Next <ArrowRight size={14} /></Button>
           </Link>
         )}
       </div>
