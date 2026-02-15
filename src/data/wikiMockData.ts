@@ -509,3 +509,113 @@ export const mockRecentReads = [
 
 // Search suggestions
 export const searchSuggestions = ["appendicitis", "anastomotic leak", "acute pancreatitis", "cholecystectomy"];
+
+// ===== GUIDELINES =====
+export interface WikiGuideline {
+  id: string;
+  title: string;
+  publisher: string;
+  year: number;
+  type: "external_link" | "uploaded_pdf";
+  url: string;
+  moduleSlug: string;
+  topicSlugs: string[];
+  tags: string[];
+  summary?: string;
+}
+
+export const wikiGuidelines: WikiGuideline[] = [
+  {
+    id: "g1", title: "Appendicitis in Over 16s: Diagnosis and Management", publisher: "NICE", year: 2023,
+    type: "external_link", url: "https://www.nice.org.uk/guidance/ng164",
+    moduleSlug: "emergency-general-surgery", topicSlugs: ["acute-appendicitis"],
+    tags: ["NICE", "Emergency", "Appendicitis"],
+    summary: "NICE guideline covering imaging, antibiotic therapy and surgical management of acute appendicitis in adults.",
+  },
+  {
+    id: "g2", title: "Gallstone Disease: Diagnosis and Management", publisher: "NICE", year: 2014,
+    type: "external_link", url: "https://www.nice.org.uk/guidance/cg188",
+    moduleSlug: "emergency-general-surgery", topicSlugs: ["gallstones-emergency"],
+    tags: ["NICE", "Gallstones", "Cholecystectomy"],
+    summary: "Assessment and management of gallstone disease including cholecystectomy timing and bile duct imaging.",
+  },
+  {
+    id: "g3", title: "UK Guidelines for Management of Acute Pancreatitis", publisher: "BSG / AUGIS", year: 2019,
+    type: "external_link", url: "https://gut.bmj.com/content/68/Suppl_1/s1",
+    moduleSlug: "emergency-general-surgery", topicSlugs: ["acute-pancreatitis"],
+    tags: ["BSG", "AUGIS", "Pancreatitis"],
+    summary: "Joint BSG/AUGIS guidelines on severity scoring, imaging, nutrition and intervention timing in acute pancreatitis.",
+  },
+  {
+    id: "g4", title: "Venous Thromboembolism in Over 16s: Reducing the Risk", publisher: "NICE", year: 2018,
+    type: "external_link", url: "https://www.nice.org.uk/guidance/ng89",
+    moduleSlug: "elective-general-surgery", topicSlugs: ["vte"],
+    tags: ["NICE", "VTE", "Thromboprophylaxis"],
+    summary: "Risk assessment and pharmacological/mechanical thromboprophylaxis for hospital patients.",
+  },
+  {
+    id: "g5", title: "Sepsis: Recognition, Diagnosis and Early Management", publisher: "NICE", year: 2017,
+    type: "external_link", url: "https://www.nice.org.uk/guidance/ng51",
+    moduleSlug: "emergency-general-surgery", topicSlugs: ["superficial-sepsis"],
+    tags: ["NICE", "Sepsis", "Emergency"],
+    summary: "Early identification, risk stratification and antibiotic management of sepsis in secondary care.",
+  },
+  {
+    id: "g6", title: "ACPGBI Guidelines for Management of Colorectal Cancer", publisher: "ACPGBI", year: 2022,
+    type: "external_link", url: "https://www.acpgbi.org.uk/guidelines",
+    moduleSlug: "colorectal", topicSlugs: [],
+    tags: ["ACPGBI", "Colorectal Cancer", "MDT"],
+    summary: "Comprehensive guidelines on staging, surgical technique and follow-up for colorectal malignancy.",
+  },
+  {
+    id: "g7", title: "AUGIS Guidance on Oesophagogastric Cancer Surgery", publisher: "AUGIS", year: 2021,
+    type: "external_link", url: "https://www.augis.org/guidelines",
+    moduleSlug: "upper-gi", topicSlugs: [],
+    tags: ["AUGIS", "Upper GI", "Oesophagogastric Cancer"],
+    summary: "Standards for oesophagogastric cancer surgery including surgical volume, technique and perioperative care.",
+  },
+  {
+    id: "g8", title: "BTA Guidelines for Management of Thyroid Cancer", publisher: "BTA", year: 2014,
+    type: "external_link", url: "https://www.british-thyroid-association.org/guidelines",
+    moduleSlug: "endocrine", topicSlugs: [],
+    tags: ["BTA", "Thyroid", "Endocrine"],
+    summary: "Investigation, surgical management and follow-up for differentiated and medullary thyroid cancer.",
+  },
+  {
+    id: "g9", title: "Major Trauma: Assessment and Initial Management", publisher: "NICE", year: 2016,
+    type: "external_link", url: "https://www.nice.org.uk/guidance/ng39",
+    moduleSlug: "trauma", topicSlugs: [],
+    tags: ["NICE", "Trauma", "Major Trauma"],
+    summary: "Pre-hospital and in-hospital management of major trauma including haemorrhage control and imaging.",
+  },
+  {
+    id: "g10", title: "ASGBI Commissioning Guide: Hernia Surgery", publisher: "ASGBI", year: 2020,
+    type: "uploaded_pdf", url: "/guidelines/asgbi-hernia-2020.pdf",
+    moduleSlug: "elective-general-surgery", topicSlugs: ["elective-hernia"],
+    tags: ["ASGBI", "Hernia", "Elective"],
+    summary: "Best-practice commissioning standards for inguinal, femoral and incisional hernia repair.",
+  },
+  {
+    id: "g11", title: "NICE Early and Locally Advanced Breast Cancer", publisher: "NICE", year: 2018,
+    type: "external_link", url: "https://www.nice.org.uk/guidance/ng101",
+    moduleSlug: "breast", topicSlugs: [],
+    tags: ["NICE", "Breast Cancer", "Oncology"],
+    summary: "Diagnosis, management and follow-up of early and locally advanced breast cancer.",
+  },
+  {
+    id: "g12", title: "BSG Inflammatory Bowel Disease Guidelines", publisher: "BSG", year: 2019,
+    type: "external_link", url: "https://www.bsg.org.uk/clinical-resource/ibd-guidelines",
+    moduleSlug: "colorectal", topicSlugs: [],
+    tags: ["BSG", "IBD", "Crohn's", "Colitis"],
+    summary: "Medical and surgical management of Crohn's disease and ulcerative colitis.",
+  },
+];
+
+export const getGuidelinesByModule = (moduleSlug: string) =>
+  wikiGuidelines.filter(g => g.moduleSlug === moduleSlug);
+
+export const getGuidelinesByTopic = (topicSlug: string) =>
+  wikiGuidelines.filter(g => g.topicSlugs.includes(topicSlug));
+
+export const guidelinePublishers = [...new Set(wikiGuidelines.map(g => g.publisher))];
+export const guidelineModuleSlugs = [...new Set(wikiGuidelines.map(g => g.moduleSlug))];
