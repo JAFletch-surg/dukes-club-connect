@@ -35,6 +35,7 @@ import CriticalConditionsPage from "./pages/members/wiki/CriticalConditionsPage"
 import IndexProceduresPage from "./pages/members/wiki/IndexProceduresPage";
 import BookmarksPage from "./pages/members/wiki/BookmarksPage";
 import ProgressPage from "./pages/members/wiki/ProgressPage";
+import GuidelinesPage from "./pages/members/wiki/GuidelinesPage";
 
 const queryClient = new QueryClient();
 
@@ -76,6 +77,7 @@ const App = () => (
             <Route path="wiki/index-procedures" element={<IndexProceduresPage />} />
             <Route path="wiki/bookmarks" element={<BookmarksPage />} />
             <Route path="wiki/progress" element={<ProgressPage />} />
+            <Route path="wiki/guidelines" element={<GuidelinesPage />} />
             <Route path="wiki/:moduleSlug" element={<ModulePage />} />
             <Route path="wiki/:moduleSlug/:topicSlug" element={<TopicArticlesPage />} />
             <Route path="wiki/:moduleSlug/:topicSlug/:articleSlug" element={<ArticlePage />} />

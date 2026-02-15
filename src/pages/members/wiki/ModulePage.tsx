@@ -11,10 +11,11 @@ import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import {
   BookOpen, AlertCircle, Scissors, ArrowRight, ChevronRight, Bookmark,
-  Plus, FileText,
+  Plus, FileText, ExternalLink,
 } from "lucide-react";
 import {
   getModuleBySlug, getTopicsByModule, wikiArticles, moduleColors, emergencySubgroups,
+  getGuidelinesByTopic, getGuidelinesByModule,
   WikiTopic,
 } from "@/data/wikiMockData";
 import { moduleIcons } from "@/data/wikiIcons";
@@ -198,6 +199,7 @@ const TopicRow = ({ topic, color, isSelected, onSelect, moduleSlug }: { topic: W
 
 const TopicDetail = ({ topic, color, moduleSlug, moduleTitle }: { topic: WikiTopic; color: string; moduleSlug: string; moduleTitle: string }) => {
   const articles = wikiArticles.filter(a => a.topicSlug === topic.slug && a.moduleSlug === moduleSlug);
+  const topicGuidelines = getGuidelinesByTopic(topic.slug);
   const [showAddDialog, setShowAddDialog] = useState(false);
 
   return (
@@ -344,6 +346,30 @@ const TopicDetail = ({ topic, color, moduleSlug, moduleTitle }: { topic: WikiTop
             </Link>
           )}
         </div>
+
+        {topicGuidelines.length > 0 && (
+          <div>
+            <h4 className="text-xs font-bold text-muted-foreground tracking-wider uppercase mb-2.5">Related Guidelines</h4>
+            <div className="space-y-1.5">
+              {topicGuidelines.map(g => (
+                <a
+                  key={g.id}
+                  href={g.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2.5 p-2.5 rounded-lg border border-border hover:border-primary/30 hover:bg-primary/5 transition-all group/gl"
+                >
+                  <FileText size={14} className={g.type === "uploaded_pdf" ? "text-destructive shrink-0" : "text-primary shrink-0"} />
+                  <div className="flex-1 min-w-0">
+                    <p className="text-xs font-medium text-foreground group-hover/gl:text-primary transition-colors truncate">{g.title}</p>
+                    <p className="text-[10px] text-muted-foreground">{g.publisher} · {g.year}</p>
+                  </div>
+                  <ExternalLink size={10} className="text-muted-foreground shrink-0" />
+                </a>
+              ))}
+            </div>
+          </div>
+        )}
 
         <div className="pt-3 border-t border-border">
           <p className="text-xs text-muted-foreground">8 questions available → <Link to="/members/questions" className="text-primary font-semibold hover:underline">Test yourself</Link></p>

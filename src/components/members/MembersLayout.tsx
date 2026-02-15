@@ -34,6 +34,7 @@ const navSections = [
       { title: "Revision Wiki", path: "/members/wiki", icon: BookOpen },
       { title: "Critical Conditions", path: "/members/wiki/critical-conditions", icon: AlertCircle },
       { title: "Index Procedures", path: "/members/wiki/index-procedures", icon: Scissors },
+      { title: "Guidelines", path: "/members/wiki/guidelines", icon: FileText },
       { title: "My Bookmarks", path: "/members/wiki/bookmarks", icon: Bookmark },
       { title: "My Progress", path: "/members/wiki/progress", icon: BarChart3 },
     ],
