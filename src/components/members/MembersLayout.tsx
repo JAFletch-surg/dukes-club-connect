@@ -6,6 +6,7 @@ import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import {
   Home, Video, Play, Mic, BookOpen, FileText, Globe, Users,
   Settings, ArrowLeft, LogOut, Menu, X, Search, ShieldCheck, ExternalLink,
+  AlertCircle, Scissors, Bookmark, BarChart3,
 } from "lucide-react";
 import logoWhite from "@/assets/logo-white.png";
 import { mockUser } from "@/data/mockMembersData";
@@ -25,6 +26,16 @@ const navSections = [
     items: [
       { title: "FRCS Resources", path: "/members/frcs", icon: BookOpen },
       { title: "Question Bank", path: "/members/questions", icon: FileText },
+    ],
+  },
+  {
+    label: "REVISION",
+    items: [
+      { title: "Revision Wiki", path: "/members/wiki", icon: BookOpen },
+      { title: "Critical Conditions", path: "/members/wiki/critical-conditions", icon: AlertCircle },
+      { title: "Index Procedures", path: "/members/wiki/index-procedures", icon: Scissors },
+      { title: "My Bookmarks", path: "/members/wiki/bookmarks", icon: Bookmark },
+      { title: "My Progress", path: "/members/wiki/progress", icon: BarChart3 },
     ],
   },
   {

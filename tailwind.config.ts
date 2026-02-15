@@ -51,10 +51,29 @@ export default {
   				DEFAULT: 'hsl(var(--gold))',
   				foreground: 'hsl(var(--gold-foreground))'
   			},
-  			navy: {
-  				DEFAULT: 'hsl(var(--navy))',
-  				foreground: 'hsl(var(--navy-foreground))'
-  			},
+			navy: {
+				DEFAULT: 'hsl(var(--navy))',
+				foreground: 'hsl(var(--navy-foreground))'
+			},
+			wiki: {
+				critical: 'hsl(var(--wiki-critical))',
+				'critical-bg': 'hsl(var(--wiki-critical-bg))',
+				index: 'hsl(var(--wiki-index))',
+				'index-bg': 'hsl(var(--wiki-index-bg))',
+				phase2: 'hsl(var(--wiki-phase2))',
+				phase3: 'hsl(var(--wiki-phase3))',
+				read: 'hsl(var(--wiki-read))',
+				stale: 'hsl(var(--wiki-stale))',
+				unread: 'hsl(var(--wiki-unread))',
+				keypoint: 'hsl(var(--wiki-keypoint))',
+				'keypoint-bg': 'hsl(var(--wiki-keypoint-bg))',
+				warning: 'hsl(var(--wiki-warning))',
+				'warning-bg': 'hsl(var(--wiki-warning-bg))',
+				pearl: 'hsl(var(--wiki-pearl))',
+				'pearl-bg': 'hsl(var(--wiki-pearl-bg))',
+				examtip: 'hsl(var(--wiki-examtip))',
+				'examtip-bg': 'hsl(var(--wiki-examtip-bg))',
+			},
   			sidebar: {
   				DEFAULT: 'hsl(var(--sidebar-background))',
   				foreground: 'hsl(var(--sidebar-foreground))',

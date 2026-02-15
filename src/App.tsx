@@ -27,6 +27,14 @@ import FellowshipsPage from "./pages/members/FellowshipsPage";
 import MemberDirectory from "./pages/members/MemberDirectory";
 import MemberProfile from "./pages/members/MemberProfile";
 import { LiveWebinars, Podcasts } from "./pages/members/PlaceholderMemberPages";
+import WikiHome from "./pages/members/wiki/WikiHome";
+import ModulePage from "./pages/members/wiki/ModulePage";
+import TopicArticlesPage from "./pages/members/wiki/TopicArticlesPage";
+import ArticlePage from "./pages/members/wiki/ArticlePage";
+import CriticalConditionsPage from "./pages/members/wiki/CriticalConditionsPage";
+import IndexProceduresPage from "./pages/members/wiki/IndexProceduresPage";
+import BookmarksPage from "./pages/members/wiki/BookmarksPage";
+import ProgressPage from "./pages/members/wiki/ProgressPage";
 
 const queryClient = new QueryClient();
 
@@ -63,6 +71,14 @@ const App = () => (
             <Route path="fellowships" element={<FellowshipsPage />} />
             <Route path="directory" element={<MemberDirectory />} />
             <Route path="profile" element={<MemberProfile />} />
+            <Route path="wiki" element={<WikiHome />} />
+            <Route path="wiki/critical-conditions" element={<CriticalConditionsPage />} />
+            <Route path="wiki/index-procedures" element={<IndexProceduresPage />} />
+            <Route path="wiki/bookmarks" element={<BookmarksPage />} />
+            <Route path="wiki/progress" element={<ProgressPage />} />
+            <Route path="wiki/:moduleSlug" element={<ModulePage />} />
+            <Route path="wiki/:moduleSlug/:topicSlug" element={<TopicArticlesPage />} />
+            <Route path="wiki/:moduleSlug/:topicSlug/:articleSlug" element={<ArticlePage />} />
           </Route>
 
           <Route path="*" element={<NotFound />} />
