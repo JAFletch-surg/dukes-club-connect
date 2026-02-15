@@ -160,6 +160,18 @@ export const wikiModules: WikiModule[] = [
     icon: "graduation-cap", color: "#4a5568", phase: "All Phases",
     sort_order: 11, topicCount: 10, criticalCount: 0, articleCount: 12, readPercent: 40,
   },
+  {
+    id: "m12", title: "Applied Surgical Anatomy", slug: "anatomy",
+    description: "Clinically relevant surgical anatomy organised by region, including surface markings, neurovascular structures, and operative approaches.",
+    icon: "bone", color: "#5B5EA6", phase: "Phase 1 + 2",
+    sort_order: 12, topicCount: 12, criticalCount: 0, articleCount: 20, readPercent: 15,
+  },
+  {
+    id: "m13", title: "Surgical Critical Care", slug: "critical-care",
+    description: "Perioperative and ICU management of the critically ill surgical patient including ventilation, nutrition, organ support and end-of-life care.",
+    icon: "heart-pulse", color: "#C53030", phase: "Phase 2 + 3",
+    sort_order: 13, topicCount: 10, criticalCount: 3, articleCount: 18, readPercent: 10,
+  },
 ];
 
 // ===== TOPICS =====
@@ -308,6 +320,32 @@ export const wikiTopics: WikiTopic[] = [
   { id: "t11-8", module_id: "m11", moduleSlug: "cross-cutting", title: "Health Promotion & Prevention", slug: "health-promotion", description: "GPC Domain 4: Screening, lifestyle modification, prehabilitation.", phase_tags: ["all"], sort_order: 8, articleCount: 1, readCount: 0, is_critical: false, indexProcedures: [] },
   { id: "t11-9", module_id: "m11", moduleSlug: "cross-cutting", title: "Perioperative Care", slug: "perioperative-care", description: "Pre-assessment, enhanced recovery, thromboprophylaxis, antibiotic prophylaxis, critical care.", phase_tags: ["all"], sort_order: 9, articleCount: 1, readCount: 1, is_critical: false, indexProcedures: [] },
   { id: "t11-10", module_id: "m11", moduleSlug: "cross-cutting", title: "Quality Improvement & Audit", slug: "quality-improvement", description: "QI methodology, PDSA cycles, GIRFT, national audits.", phase_tags: ["all"], sort_order: 10, articleCount: 1, readCount: 0, is_critical: false, indexProcedures: [] },
+
+  // --- Applied Surgical Anatomy ---
+  { id: "t12-1", module_id: "m12", moduleSlug: "anatomy", title: "Head & Neck Anatomy", slug: "head-neck", description: "Triangles of the neck, cranial nerves, salivary glands, thyroid relations and surgical approaches.", is_critical: false, phase_tags: ["phase1", "phase2"], sort_order: 1, articleCount: 2, readCount: 0, indexProcedures: [] },
+  { id: "t12-2", module_id: "m12", moduleSlug: "anatomy", title: "Thoracic Anatomy", slug: "thorax", description: "Mediastinal compartments, lung segments, oesophageal relations, thoracic duct and diaphragm.", is_critical: false, phase_tags: ["phase1", "phase2"], sort_order: 2, articleCount: 2, readCount: 1, indexProcedures: [] },
+  { id: "t12-3", module_id: "m12", moduleSlug: "anatomy", title: "Abdominal Wall & Inguinal Region", slug: "abdominal-wall-anatomy", description: "Layers of the abdominal wall, inguinal canal, femoral canal and surface markings.", is_critical: false, phase_tags: ["phase1", "phase2"], sort_order: 3, articleCount: 2, readCount: 1, indexProcedures: [] },
+  { id: "t12-4", module_id: "m12", moduleSlug: "anatomy", title: "Peritoneal Cavity & Mesenteries", slug: "peritoneum", description: "Peritoneal reflections, omenta, mesenteric anatomy and intra-abdominal spaces.", is_critical: false, phase_tags: ["phase1", "phase2"], sort_order: 4, articleCount: 2, readCount: 0, indexProcedures: [] },
+  { id: "t12-5", module_id: "m12", moduleSlug: "anatomy", title: "Upper GI Surgical Anatomy", slug: "upper-gi-anatomy", description: "Oesophageal, gastric and duodenal anatomy including arterial supply and lymphatic drainage.", is_critical: false, phase_tags: ["phase2"], sort_order: 5, articleCount: 2, readCount: 0, indexProcedures: [] },
+  { id: "t12-6", module_id: "m12", moduleSlug: "anatomy", title: "Hepatobiliary & Pancreatic Anatomy", slug: "hpb-anatomy", description: "Hepatic segments, biliary tree variants, portal vein anatomy and pancreatic relations.", is_critical: false, phase_tags: ["phase2"], sort_order: 6, articleCount: 2, readCount: 1, indexProcedures: [] },
+  { id: "t12-7", module_id: "m12", moduleSlug: "anatomy", title: "Colorectal & Pelvic Anatomy", slug: "colorectal-anatomy", description: "Colonic arterial supply, TME planes, pelvic autonomic nerves and anal canal anatomy.", is_critical: false, phase_tags: ["phase2"], sort_order: 7, articleCount: 2, readCount: 0, indexProcedures: [] },
+  { id: "t12-8", module_id: "m12", moduleSlug: "anatomy", title: "Vascular Anatomy", slug: "vascular-anatomy", description: "Aorta and branches, venous system, portosystemic anastomoses and lymphatic drainage.", is_critical: false, phase_tags: ["phase1", "phase2"], sort_order: 8, articleCount: 1, readCount: 0, indexProcedures: [] },
+  { id: "t12-9", module_id: "m12", moduleSlug: "anatomy", title: "Retroperitoneum & Adrenals", slug: "retroperitoneum", description: "Retroperitoneal structures, kidney relations, adrenal blood supply and ureteric anatomy.", is_critical: false, phase_tags: ["phase2"], sort_order: 9, articleCount: 1, readCount: 0, indexProcedures: [] },
+  { id: "t12-10", module_id: "m12", moduleSlug: "anatomy", title: "Breast Anatomy", slug: "breast-anatomy", description: "Breast structure, axillary levels, sentinel node anatomy and neurovascular supply.", is_critical: false, phase_tags: ["phase2"], sort_order: 10, articleCount: 1, readCount: 0, indexProcedures: [] },
+  { id: "t12-11", module_id: "m12", moduleSlug: "anatomy", title: "Endocrine Gland Anatomy", slug: "endocrine-anatomy", description: "Thyroid, parathyroid and adrenal anatomy including recurrent laryngeal nerve relations.", is_critical: false, phase_tags: ["phase2"], sort_order: 11, articleCount: 1, readCount: 0, indexProcedures: [] },
+  { id: "t12-12", module_id: "m12", moduleSlug: "anatomy", title: "Hernial Orifices & Embryology", slug: "hernial-embryology", description: "Developmental anatomy relevant to hernias, intestinal rotation and congenital anomalies.", is_critical: false, phase_tags: ["phase1"], sort_order: 12, articleCount: 1, readCount: 0, indexProcedures: [] },
+
+  // --- Surgical Critical Care ---
+  { id: "t13-1", module_id: "m13", moduleSlug: "critical-care", title: "Sepsis & Septic Shock", slug: "cc-sepsis", description: "Recognition, early management and escalation of sepsis in the surgical patient using Sepsis-3 criteria.", is_critical: true, critical_label: "Sepsis & septic shock", critical_assessment_note: "Requires CBD/CEX to Level 4 by certification", phase_tags: ["phase2", "phase3"], sort_order: 1, articleCount: 3, readCount: 1, indexProcedures: [] },
+  { id: "t13-2", module_id: "m13", moduleSlug: "critical-care", title: "Mechanical Ventilation", slug: "ventilation", description: "Principles of invasive and non-invasive ventilation, modes, weaning and tracheostomy.", is_critical: false, phase_tags: ["phase2"], sort_order: 2, articleCount: 2, readCount: 0, indexProcedures: [{ id: "ip13-1", topic_id: "t13-2", procedure_name: "Percutaneous tracheostomy", pba_level: "Level 3", sort_order: 1 }] },
+  { id: "t13-3", module_id: "m13", moduleSlug: "critical-care", title: "Fluid & Electrolyte Management", slug: "fluids-electrolytes", description: "Intravenous fluid therapy, electrolyte disturbances and acid-base balance in the surgical patient.", is_critical: false, phase_tags: ["phase2"], sort_order: 3, articleCount: 2, readCount: 1, indexProcedures: [] },
+  { id: "t13-4", module_id: "m13", moduleSlug: "critical-care", title: "Acute Kidney Injury", slug: "aki", description: "Prevention, diagnosis and management of AKI in the perioperative period including renal replacement therapy.", is_critical: true, critical_label: "Acute kidney injury", critical_assessment_note: "Requires CBD/CEX to Level 4 by certification", phase_tags: ["phase2", "phase3"], sort_order: 4, articleCount: 2, readCount: 0, indexProcedures: [] },
+  { id: "t13-5", module_id: "m13", moduleSlug: "critical-care", title: "Cardiovascular Support", slug: "cardiovascular-support", description: "Inotropes, vasopressors, invasive monitoring and management of perioperative cardiac complications.", is_critical: false, phase_tags: ["phase2"], sort_order: 5, articleCount: 2, readCount: 0, indexProcedures: [] },
+  { id: "t13-6", module_id: "m13", moduleSlug: "critical-care", title: "Nutrition in Critical Illness", slug: "critical-nutrition", description: "Enteral and parenteral nutrition, refeeding syndrome and metabolic response to injury.", is_critical: false, phase_tags: ["phase2"], sort_order: 6, articleCount: 1, readCount: 0, indexProcedures: [] },
+  { id: "t13-7", module_id: "m13", moduleSlug: "critical-care", title: "Coagulopathy & Massive Transfusion", slug: "coagulopathy", description: "DIC, massive haemorrhage protocols, blood product management and point-of-care testing.", is_critical: true, critical_label: "Massive haemorrhage & coagulopathy", critical_assessment_note: "Requires CBD/CEX to Level 4 by certification", phase_tags: ["phase2", "phase3"], sort_order: 7, articleCount: 2, readCount: 0, indexProcedures: [] },
+  { id: "t13-8", module_id: "m13", moduleSlug: "critical-care", title: "Respiratory Failure & ARDS", slug: "ards", description: "Diagnosis and management of acute respiratory failure and ARDS in the surgical patient.", is_critical: false, phase_tags: ["phase2"], sort_order: 8, articleCount: 1, readCount: 0, indexProcedures: [] },
+  { id: "t13-9", module_id: "m13", moduleSlug: "critical-care", title: "Pain Management & Sedation", slug: "pain-sedation", description: "Multimodal analgesia, regional techniques, sedation scales and delirium prevention in ICU.", is_critical: false, phase_tags: ["phase2"], sort_order: 9, articleCount: 1, readCount: 0, indexProcedures: [] },
+  { id: "t13-10", module_id: "m13", moduleSlug: "critical-care", title: "End-of-Life & Organ Donation", slug: "end-of-life", description: "Withdrawal of treatment, brainstem death testing, organ donation pathways and family communication.", is_critical: false, phase_tags: ["phase2", "phase3"], sort_order: 10, articleCount: 1, readCount: 0, indexProcedures: [] },
 ];
 
 // ===== CRITICAL CONDITIONS =====
@@ -453,9 +491,8 @@ export const wikiArticles: WikiArticle[] = [
       { type: "exam_tip", text: "In the FRCS exam, be prepared to discuss the management of an appendix mass in a child. Unlike adults, early operative intervention is often preferred in children due to the higher failure rate of conservative management." },
     ],
   },
-];
 
-// ===== HELPER FUNCTIONS =====
+];
 export const getModuleBySlug = (slug: string) => wikiModules.find(m => m.slug === slug);
 export const getTopicsByModule = (moduleId: string) => wikiTopics.filter(t => t.module_id === moduleId).sort((a, b) => a.sort_order - b.sort_order);
 export const getTopicBySlug = (moduleSlug: string, topicSlug: string) => wikiTopics.find(t => t.moduleSlug === moduleSlug && t.slug === topicSlug);
@@ -476,6 +513,8 @@ export const moduleColors: Record<string, string> = {
   "transplant": "#319795",
   "gsoc": "#38a169",
   "cross-cutting": "#4a5568",
+  "anatomy": "#5B5EA6",
+  "critical-care": "#C53030",
 };
 
 // Emergency Surgery subgroups for display
