@@ -482,8 +482,15 @@ export const mockFellowships = [
     type: "UK" as const,
     location: "London, UK",
     duration: "12 months",
+    coverImage: "https://images.unsplash.com/photo-1551190822-a9ce113ac100?w=800&q=80",
+    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    accentColor: "220 60% 15%" as const, // navy
     description: "A comprehensive fellowship in benign and malignant colorectal surgery with exposure to complex pelvic floor procedures.",
     fullDescription: "This prestigious fellowship at St Mark's Hospital offers unparalleled training in all aspects of colorectal surgery. Fellows will gain experience in minimally invasive colorectal cancer surgery, IBD surgery, pelvic floor reconstruction, and complex fistula management.",
+    faculty: [
+      { name: "Mr James Taylor", role: "Lead Supervisor", photo: "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=200&q=80" },
+      { name: "Prof Sarah Williams", role: "Research Lead", photo: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=200&q=80" },
+    ],
     supervisors: ["Mr James Taylor", "Prof Sarah Williams"],
     learningOutcomes: [
       "Independently perform laparoscopic colorectal resections",
@@ -517,8 +524,15 @@ export const mockFellowships = [
     type: "International" as const,
     location: "Ohio, USA",
     duration: "12 months",
+    coverImage: "https://images.unsplash.com/photo-1516549655169-df83a0774514?w=800&q=80",
+    videoUrl: "",
+    accentColor: "258 89% 66%" as const, // primary purple
     description: "Advanced laparoscopic and robotic colorectal surgery fellowship at a world-leading centre.",
     fullDescription: "The Cleveland Clinic fellowship provides exceptional training in robotic and laparoscopic colorectal surgery with exposure to cutting-edge surgical technology and research opportunities.",
+    faculty: [
+      { name: "Dr Michael Chen", role: "Program Director", photo: "https://images.unsplash.com/photo-1622253692010-333f2da6031d?w=200&q=80" },
+      { name: "Dr Robert Hughes", role: "Robotic Lead", photo: "https://images.unsplash.com/photo-1537368910025-700350fe46c7?w=200&q=80" },
+    ],
     supervisors: ["Dr Michael Chen", "Dr Robert Hughes"],
     learningOutcomes: [
       "Master robotic colorectal surgery techniques",
@@ -550,8 +564,14 @@ export const mockFellowships = [
     type: "UK" as const,
     location: "Oxford, UK",
     duration: "6 months",
+    coverImage: "https://images.unsplash.com/photo-1579684385127-1ef15d508118?w=800&q=80",
+    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    accentColor: "42 87% 55%" as const, // gold
     description: "Focused fellowship in inflammatory bowel disease surgery with pouch surgery expertise.",
     fullDescription: "This fellowship focuses exclusively on surgical management of IBD, including ileal pouch-anal anastomosis, complex redo pouch surgery, and multidisciplinary IBD care.",
+    faculty: [
+      { name: "Prof Emily Foster", role: "Lead Supervisor", photo: "https://images.unsplash.com/photo-1594824476967-48c8b964ac31?w=200&q=80" },
+    ],
     supervisors: ["Prof Emily Foster"],
     learningOutcomes: [
       "Perform IPAA independently",
@@ -584,8 +604,15 @@ export const mockFellowships = [
     type: "UK" as const,
     location: "London, UK",
     duration: "12 months",
+    coverImage: "https://images.unsplash.com/photo-1504439468489-c8920d796a29?w=800&q=80",
+    videoUrl: "",
+    accentColor: "145 50% 35%" as const, // green
     description: "Specialist fellowship covering functional bowel disorders, pelvic floor reconstruction, and neuromodulation.",
     fullDescription: "UCLH offers a unique fellowship in pelvic floor surgery combining colorectal, urogynaecological, and neurological approaches to pelvic floor dysfunction.",
+    faculty: [
+      { name: "Mr James Taylor", role: "Lead Supervisor", photo: "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=200&q=80" },
+      { name: "Dr Sarah Mitchell", role: "Neuromodulation Lead", photo: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=200&q=80" },
+    ],
     supervisors: ["Mr James Taylor", "Dr Sarah Mitchell"],
     learningOutcomes: [
       "Perform ventral mesh rectopexy independently",
