@@ -25,7 +25,7 @@ const FellowshipCard = ({ fellowship, onClick }: { fellowship: Fellowship; onCli
         alt={fellowship.hospital}
         className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
       />
-      <div className="absolute inset-0 bg-gradient-to-t from-foreground/80 via-foreground/30 to-transparent" />
+      <div className="absolute inset-0 bg-gradient-to-t from-navy via-navy/40 to-transparent" />
       
       {/* Type badge */}
       <Badge
@@ -54,11 +54,11 @@ const FellowshipCard = ({ fellowship, onClick }: { fellowship: Fellowship; onCli
       </div>
     </div>
 
-    <CardContent className="p-4 space-y-3">
+    <CardContent className="p-4 space-y-3 border-t-2 border-gold/30">
       {/* Location & Duration row */}
       <div className="flex items-center justify-between text-xs text-muted-foreground">
-        <span className="flex items-center gap-1"><MapPin size={12} /> {fellowship.location}</span>
-        <span className="flex items-center gap-1"><Clock size={12} /> {fellowship.duration}</span>
+        <span className="flex items-center gap-1"><MapPin size={12} className="text-gold" /> {fellowship.location}</span>
+        <span className="flex items-center gap-1"><Clock size={12} className="text-navy" /> {fellowship.duration}</span>
       </div>
 
       {/* Faculty avatars */}
@@ -81,7 +81,7 @@ const FellowshipCard = ({ fellowship, onClick }: { fellowship: Fellowship; onCli
         {fellowship.subspecialties.map((s) => (
           <span
             key={s}
-            className="text-[10px] px-2 py-0.5 rounded-full font-medium border border-border bg-accent text-accent-foreground"
+            className="text-[10px] px-2 py-0.5 rounded-full font-medium border border-gold/20 bg-gold/5 text-foreground"
           >
             {s}
           </span>
@@ -130,19 +130,25 @@ const FellowshipsPage = () => {
   return (
     <div className="space-y-6 max-w-6xl">
       {/* Header */}
-      <div>
-        <div className="flex items-center gap-2 mb-1">
-          <GraduationCap size={22} className="text-primary" />
-          <h1 className="text-2xl font-bold text-foreground">Fellowship Database</h1>
-        </div>
-        <p className="text-muted-foreground text-sm">Explore colorectal surgery fellowship opportunities worldwide</p>
-        <div className="flex gap-4 mt-3 text-xs text-muted-foreground">
-          <span className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-navy/10">
-            <span className="w-2 h-2 rounded-full bg-navy" /> {mockFellowships.filter(f => f.type === "UK").length} UK
-          </span>
-          <span className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-primary/10">
-            <span className="w-2 h-2 rounded-full bg-primary" /> {mockFellowships.filter(f => f.type === "International").length} International
-          </span>
+      <div className="relative overflow-hidden rounded-xl bg-navy p-6 sm:p-8">
+        <div className="absolute top-0 right-0 w-64 h-64 bg-gold/5 rounded-full -translate-y-1/2 translate-x-1/2" />
+        <div className="absolute bottom-0 left-0 w-48 h-48 bg-gold/5 rounded-full translate-y-1/2 -translate-x-1/2" />
+        <div className="relative z-10">
+          <div className="flex items-center gap-2.5 mb-2">
+            <div className="h-10 w-10 rounded-lg bg-gold/20 flex items-center justify-center">
+              <GraduationCap size={22} className="text-gold" />
+            </div>
+            <h1 className="text-2xl font-bold text-navy-foreground">Fellowship Database</h1>
+          </div>
+          <p className="text-navy-foreground/70 text-sm max-w-lg">Explore colorectal surgery fellowship opportunities worldwide — from UK training posts to international observerships.</p>
+          <div className="flex gap-4 mt-4 text-xs">
+            <span className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-navy-foreground/10 text-navy-foreground/80 font-medium">
+              <span className="w-2 h-2 rounded-full bg-gold" /> {mockFellowships.filter(f => f.type === "UK").length} UK Posts
+            </span>
+            <span className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-navy-foreground/10 text-navy-foreground/80 font-medium">
+              <span className="w-2 h-2 rounded-full bg-primary" /> {mockFellowships.filter(f => f.type === "International").length} International
+            </span>
+          </div>
         </div>
       </div>
 
@@ -286,7 +292,7 @@ const FellowshipsPage = () => {
                 ) : (
                   <>
                     <img src={selected.coverImage} alt={selected.hospital} className="w-full h-full object-cover" />
-                    <div className="absolute inset-0 bg-gradient-to-t from-foreground/70 via-foreground/20 to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-navy via-navy/30 to-transparent" />
                     {selected.videoUrl && (
                       <button
                         onClick={(e) => { e.stopPropagation(); setShowVideo(true); }}
@@ -349,7 +355,7 @@ const FellowshipsPage = () => {
                   </p>
                   <div className="grid sm:grid-cols-2 gap-3">
                     {selected.faculty.map((f, i) => (
-                      <div key={i} className="flex items-center gap-3 p-3 rounded-lg bg-muted/30">
+                      <div key={i} className="flex items-center gap-3 p-3 rounded-lg bg-navy/5 border border-navy/10">
                         <Avatar className="h-12 w-12 border-2 border-card shadow-sm">
                           <AvatarImage src={f.photo} alt={f.name} />
                           <AvatarFallback className="text-xs bg-muted">{f.name.split(" ").map(n => n[0]).join("")}</AvatarFallback>
@@ -390,12 +396,12 @@ const FellowshipsPage = () => {
 
                 {/* Salary & On-call */}
                 <div className="grid sm:grid-cols-2 gap-3">
-                  <div className="p-3 rounded-lg bg-muted/30">
-                    <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-1">Salary</p>
+                  <div className="p-3 rounded-lg bg-gold/5 border border-gold/10">
+                    <p className="text-xs font-semibold text-gold uppercase tracking-wide mb-1">Salary</p>
                     <p className="text-sm text-foreground">{selected.salary}</p>
                   </div>
                   {selected.onCall && typeof selected.onCall === "object" && (
-                    <div className="p-3 rounded-lg bg-muted/30">
+                    <div className="p-3 rounded-lg bg-navy/5 border border-navy/10">
                       <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-1">On-Call</p>
                       <p className="text-sm text-foreground">{selected.onCall.frequency} ({selected.onCall.type})</p>
                     </div>
@@ -409,7 +415,7 @@ const FellowshipsPage = () => {
                     <div className="border rounded-lg overflow-hidden">
                       <table className="w-full text-sm">
                         <thead>
-                          <tr className="bg-muted/30">
+                          <tr className="bg-navy/5">
                             <th className="text-left p-2.5 text-xs font-semibold text-muted-foreground">Procedure</th>
                             <th className="text-right p-2.5 text-xs font-semibold text-muted-foreground">Volume/Year</th>
                           </tr>
@@ -428,17 +434,17 @@ const FellowshipsPage = () => {
                 )}
 
                 {/* Prerequisites & Application */}
-                <div className="p-3 rounded-lg bg-muted/30">
-                  <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-1">Prerequisites</p>
+                <div className="p-3 rounded-lg bg-navy/5 border border-navy/10">
+                  <p className="text-xs font-semibold text-navy uppercase tracking-wide mb-1">Prerequisites</p>
                   <p className="text-sm text-foreground">{selected.prerequisites}</p>
                 </div>
-                <div className="p-3 rounded-lg bg-muted/30">
-                  <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-1">Application Process</p>
+                <div className="p-3 rounded-lg bg-primary/5 border border-primary/10">
+                  <p className="text-xs font-semibold text-primary uppercase tracking-wide mb-1">Application Process</p>
                   <p className="text-sm text-foreground">{selected.applicationProcess}</p>
                 </div>
                 {selected.accommodation && (
-                  <div className="p-3 rounded-lg bg-muted/30">
-                    <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-1">Accommodation</p>
+                  <div className="p-3 rounded-lg bg-gold/5 border border-gold/10">
+                    <p className="text-xs font-semibold text-gold uppercase tracking-wide mb-1">Accommodation</p>
                     <p className="text-sm text-foreground">{selected.accommodation}</p>
                   </div>
                 )}
