@@ -18,67 +18,67 @@ const subspecialtyFilterOptions = ["Pelvic Floor", "IBD", "Robotic", "Laparoscop
 /* ───── Fellowship Card ───── */
 const FellowshipCard = ({ fellowship, onClick }: { fellowship: Fellowship; onClick: () => void }) => (
   <div
-    className="group cursor-pointer rounded-lg border-2 border-navy-foreground overflow-hidden bg-navy hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
+    className="group cursor-pointer rounded-xl border border-border overflow-hidden bg-card hover:shadow-lg transition-all duration-300 hover:-translate-y-1"
     onClick={onClick}
   >
     {/* Hero image */}
-    <div className="relative h-44 overflow-hidden">
+    <div className="relative h-48 overflow-hidden">
       <img
         src={fellowship.coverImage}
         alt={fellowship.hospital}
         className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
       />
-      <div className="absolute inset-0 bg-gradient-to-t from-navy via-navy/40 to-transparent" />
+      <div className="absolute inset-0 bg-gradient-to-t from-card via-transparent to-transparent" />
 
       {/* Play indicator */}
       {fellowship.videoUrl && (
-        <div className="absolute top-3 left-3 w-8 h-8 rounded-full bg-navy-foreground/90 flex items-center justify-center shadow-lg">
-          <Play size={12} className="text-navy ml-0.5" />
+        <div className="absolute top-3 left-3 w-8 h-8 rounded-full bg-card/90 flex items-center justify-center shadow-lg">
+          <Play size={12} className="text-primary ml-0.5" />
         </div>
       )}
 
       {/* Type badge */}
       <div className="absolute top-3 right-3">
-        <span className={`text-[10px] font-bold px-2.5 py-1 rounded-full ${
+        <span className={`text-[10px] font-bold px-2.5 py-1 rounded-full shadow-sm ${
           fellowship.type === "UK"
-            ? "bg-navy-foreground text-navy"
+            ? "bg-navy text-navy-foreground"
             : "bg-gold text-gold-foreground"
         }`}>
           {fellowship.type === "UK" ? "🇬🇧 UK" : "🌍 INTL"}
         </span>
       </div>
 
-      {/* Hospital logo + title overlay */}
-      <div className="absolute bottom-3 left-3 right-3 flex items-end gap-2.5">
-        <div className="w-10 h-10 rounded-lg bg-navy-foreground/95 p-1.5 shadow-lg shrink-0">
+      {/* Hospital logo */}
+      <div className="absolute bottom-3 left-3">
+        <div className="w-11 h-11 rounded-lg bg-card/95 p-1.5 shadow-lg border border-border/50">
           <img src={fellowship.hospitalLogo} alt={fellowship.hospital} className="w-full h-full object-contain" />
         </div>
-        <h3 className="text-[13px] font-bold text-navy-foreground leading-snug line-clamp-2 flex-1">
-          {fellowship.title}
-        </h3>
       </div>
     </div>
 
     {/* Content */}
-    <div className="p-4 space-y-3">
-      <p className="text-xs text-navy-foreground/60 flex items-center gap-1.5">
-        <Building2 size={11} className="shrink-0 text-gold" /> {fellowship.hospital}
+    <div className="p-4 space-y-2.5">
+      <h3 className="text-sm font-bold text-card-foreground leading-snug line-clamp-2">
+        {fellowship.title}
+      </h3>
+      <p className="text-xs text-muted-foreground flex items-center gap-1.5">
+        <Building2 size={11} className="shrink-0 text-primary" /> {fellowship.hospital}
       </p>
 
-      <div className="flex items-center justify-between text-[11px] text-navy-foreground/60">
-        <span className="flex items-center gap-1"><MapPin size={11} className="text-gold" /> {fellowship.location}</span>
-        <span className="flex items-center gap-1 font-semibold text-navy-foreground"><Clock size={11} /> {fellowship.duration}</span>
+      <div className="flex items-center justify-between text-[11px] text-muted-foreground">
+        <span className="flex items-center gap-1"><MapPin size={11} className="text-primary" /> {fellowship.location}</span>
+        <span className="flex items-center gap-1 font-semibold text-card-foreground"><Clock size={11} /> {fellowship.duration}</span>
       </div>
 
       {/* Subspecialties */}
       <div className="flex gap-1 flex-wrap">
         {fellowship.subspecialties.slice(0, 3).map((s) => (
-          <span key={s} className="text-[10px] px-2 py-0.5 rounded-full bg-navy-foreground/10 text-navy-foreground/80 font-medium border border-navy-foreground/15">
+          <span key={s} className="text-[10px] px-2 py-0.5 rounded-full bg-accent text-accent-foreground font-medium">
             {s}
           </span>
         ))}
         {fellowship.subspecialties.length > 3 && (
-          <span className="text-[10px] px-2 py-0.5 rounded-full bg-navy-foreground/10 text-navy-foreground/50">
+          <span className="text-[10px] px-2 py-0.5 rounded-full bg-muted text-muted-foreground">
             +{fellowship.subspecialties.length - 3}
           </span>
         )}
@@ -88,7 +88,7 @@ const FellowshipCard = ({ fellowship, onClick }: { fellowship: Fellowship; onCli
       {fellowship.accreditations.length > 0 && (
         <div className="flex gap-1 flex-wrap">
           {fellowship.accreditations.map((a) => (
-            <span key={a} className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-gold/15 text-gold border border-gold/25 flex items-center gap-0.5">
+            <span key={a} className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-gold/15 text-gold-foreground border border-gold/25 flex items-center gap-0.5">
               <Award size={8} /> {a}
             </span>
           ))}
@@ -96,21 +96,21 @@ const FellowshipCard = ({ fellowship, onClick }: { fellowship: Fellowship; onCli
       )}
 
       {/* Faculty strip */}
-      <div className="flex items-center gap-2 pt-2 border-t border-navy-foreground/10">
+      <div className="flex items-center gap-2 pt-2.5 border-t border-border">
         <div className="flex -space-x-2">
           {fellowship.faculty.slice(0, 3).map((f, i) => (
-            <Avatar key={i} className="h-7 w-7 border-2 border-navy ring-1 ring-navy-foreground/20">
+            <Avatar key={i} className="h-7 w-7 border-2 border-card ring-1 ring-border">
               <AvatarImage src={f.photo} alt={f.name} />
-              <AvatarFallback className="text-[8px] bg-gold/20 text-gold font-bold">
+              <AvatarFallback className="text-[8px] bg-primary/10 text-primary font-bold">
                 {f.name.split(" ").map(n => n[0]).join("")}
               </AvatarFallback>
             </Avatar>
           ))}
         </div>
-        <span className="text-[11px] text-navy-foreground/50 truncate flex-1">
+        <span className="text-[11px] text-muted-foreground truncate flex-1">
           {fellowship.faculty.map(f => f.name.split(" ").pop()).join(" · ")}
         </span>
-        <ChevronRight size={14} className="text-navy-foreground/30 group-hover:text-gold group-hover:translate-x-0.5 transition-all" />
+        <ChevronRight size={14} className="text-muted-foreground/40 group-hover:text-primary group-hover:translate-x-0.5 transition-all" />
       </div>
     </div>
   </div>
@@ -256,8 +256,8 @@ const FellowshipsPage = () => {
         </div>
       </div>
 
-      {/* ── Cards Grid — navy bg to match events section ── */}
-      <div className="rounded-xl bg-navy p-5 sm:p-6">
+      {/* ── Cards Grid ── */}
+      <div>
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {filtered.map((fellowship) => (
             <FellowshipCard key={fellowship.id} fellowship={fellowship} onClick={() => setSelected(fellowship)} />
@@ -266,11 +266,11 @@ const FellowshipsPage = () => {
 
         {filtered.length === 0 && (
           <div className="text-center py-20">
-            <div className="w-16 h-16 rounded-2xl bg-navy-foreground/10 flex items-center justify-center mx-auto mb-4">
-              <BookOpen size={28} className="text-navy-foreground/30" />
+            <div className="w-16 h-16 rounded-2xl bg-muted flex items-center justify-center mx-auto mb-4">
+              <BookOpen size={28} className="text-muted-foreground/50" />
             </div>
-            <p className="text-sm font-semibold text-navy-foreground/60">No fellowships match your criteria</p>
-            <Button variant="hero" size="sm" className="mt-3 text-xs"
+            <p className="text-sm font-semibold text-muted-foreground">No fellowships match your criteria</p>
+            <Button variant="outline" size="sm" className="mt-3 text-xs"
               onClick={() => { setSearch(""); setTypeFilter("All"); setSelectedTags([]); }}>
               Reset filters
             </Button>
