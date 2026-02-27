@@ -28,7 +28,7 @@ const FellowshipCard = ({ fellowship, onClick }: { fellowship: Fellowship; onCli
         alt={fellowship.hospital}
         className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
       />
-      <div className="absolute inset-0 bg-gradient-to-t from-card via-transparent to-transparent" />
+      <div className="absolute inset-0 bg-gradient-to-t from-navy/70 via-primary/20 to-gold/10" />
 
       {/* Play indicator */}
       {fellowship.videoUrl && (
@@ -73,12 +73,12 @@ const FellowshipCard = ({ fellowship, onClick }: { fellowship: Fellowship; onCli
       {/* Subspecialties */}
       <div className="flex gap-1 flex-wrap">
         {fellowship.subspecialties.slice(0, 3).map((s) => (
-          <span key={s} className="text-[10px] px-2 py-0.5 rounded-full bg-accent text-accent-foreground font-medium">
+          <span key={s} className="text-[10px] px-2 py-0.5 rounded-full bg-navy text-navy-foreground font-medium">
             {s}
           </span>
         ))}
         {fellowship.subspecialties.length > 3 && (
-          <span className="text-[10px] px-2 py-0.5 rounded-full bg-muted text-muted-foreground">
+          <span className="text-[10px] px-2 py-0.5 rounded-full bg-navy/60 text-navy-foreground">
             +{fellowship.subspecialties.length - 3}
           </span>
         )}
@@ -88,7 +88,7 @@ const FellowshipCard = ({ fellowship, onClick }: { fellowship: Fellowship; onCli
       {fellowship.accreditations.length > 0 && (
         <div className="flex gap-1 flex-wrap">
           {fellowship.accreditations.map((a) => (
-            <span key={a} className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-gold/15 text-gold-foreground border border-gold/25 flex items-center gap-0.5">
+            <span key={a} className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-navy/80 text-gold border border-navy/40 flex items-center gap-0.5">
               <Award size={8} /> {a}
             </span>
           ))}
